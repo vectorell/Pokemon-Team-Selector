@@ -17,6 +17,7 @@ header {
 footer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   background-color: #dadada;
   position: fixed;
@@ -103,6 +104,13 @@ p {
 }
 
 /* --------------------NAVIGATIONSKNAPP I BOTTEN */
+.nav-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 35em;
+}
+
 .button-bottom-nav {
   margin: 1em;
   height: 5em;
@@ -112,6 +120,7 @@ p {
   background-color: var(--color-pokemon-darkred);
   box-shadow: var(--shadow);
   transition: 0.1s;
+  width: fit-content;
 }
 
 .button-bottom-nav:hover {
@@ -128,7 +137,7 @@ p {
 }
 
 .input-pokemon-search {
-  min-width: 20em;
+  /* min-width: 20em; */
   height: 3em;
   /* border-radius: 0.5em; */
   box-shadow: var(--shadow);
@@ -173,4 +182,26 @@ p {
   margin-top: 8em;
   font-size: 1.5em;
   text-align: center;
+}
+
+@media (min-width: 800px) {
+
+  body {
+    display: flex;
+    align-items: center;
+  }
+  .section__main {
+    max-width: 50em;
+  }
+
+  .container__chosen__pokemons {
+    max-width: 45em;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 3em;
+  }
+
+  .button-bottom-nav {
+    max-width: 50em;
+  }
 }
