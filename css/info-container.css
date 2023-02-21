@@ -1,0 +1,118 @@
+.section__info {
+  border: 1px solid rgba(48, 48, 48, 0.531);
+  background-color: white;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  min-height: 30em;
+  /* min-width: 40em; */
+  width: 80%;
+  max-width: 50em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15em;
+  position: relative;
+  box-shadow: var(--shadow);
+  position: absolute;
+  top: 1em;
+
+}
+
+
+
+.title-pokemon-name {
+  font-size: 2.5em;
+}
+
+.container__info__pokemon-picture {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  text-align: center;
+}
+
+.container__info__pokemon-info {
+  padding: 0.5em;
+  border-bottom: 1px solid rgb(126, 126, 126);
+  border-left: 1px solid rgb(125, 125, 125);
+  border-radius: 1em;
+  border-top-left-radius: 0em;
+  border-bottom-right-radius: 0em;;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.container__info__pokemon-info > p {
+  padding: 0.5em;
+}
+
+
+.container__info {
+  /* border: 1px dashed rgb(118, 118, 118); */
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height:60%;
+}
+
+.button-close-overlay {
+  background-color: var(--color-pokemon-red);
+  border:none;
+  color: white;
+  font-weight: 600;
+  border-radius: 2em;;
+  font-size: 1.5em;
+  width: 1.5em;
+  height: 1.5em;
+  position:absolute;
+  right: 0.5em;
+}
+
+.container__buttons {
+  margin-top: 5em;
+  margin-left: 1em;
+}
+
+.inputfield-custom-name {
+  margin-right: 1em;
+  font-size: 1.5em;
+  padding: 0.3em 0.5em;
+  width: 13em;
+  border-radius: 0.5em;
+  box-shadow: var(--shadow);
+}
+
+/* Händelseknappar */
+
+.button-overlay {
+  color: white;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  border:none;
+  box-shadow: var(--shadow);
+  transition: 0.1s
+}
+
+.button-overlay:hover {
+  transition: 0.1s;
+  transform: scale(103%);
+}
+
+.button-add-to-team {
+  background-color: var(--color-pokemon-blue);
+}
+
+.button-add-to-team-with-custom-name {
+  background-color: var(--color-pokemon-green);
+}
+
+
+.button-remove-from-team {
+  background-color: var(--color-pokemon-red);
+}

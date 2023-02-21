@@ -1,0 +1,24 @@
+:root {
+  --shadow: 5px 5px 5px rgba(139, 139, 139, 0.324);
+
+--color-pokemon-green: #4DAD5B;
+--color-pokemon-red: #FF0000;
+--color-pokemon-darkred: #CC0000;
+--color-pokemon-blue: #3B4CCA;
+--color-pokemon-yellow: #FFDE00;
+--color-pokemon-yellowdark: #B3A125;
+
+}
+
+/* VISIBILITY */
+/* .display-primary-section { display: none } */
+/* .display-reserves-section { display: none } */
+/* .display-team-section { display: none } */
+
+/* .display-info-section { display: none; } */
+/* .section__info {display: none;} */
+
+/* .button-add-to-team { display: none }
+.button-add-to-team-with-custom-name { display: none }
+.button-remove-from-team { display: none }
+.inputfield-custom-name { display: none } */

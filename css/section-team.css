@@ -1,0 +1,28 @@
+body {
+  position: relative;
+  min-width: 100vw;
+  height: 100vh;
+}
+
+
+
+
+.developer-container {
+  color: black;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin-top:0.5em;
+  box-shadow: var(--shadow);
+  transition: 0.1s;
+}
+
+.developer-container:hover {
+  transition: 0.1s;
+  transform: scale(103%);
+  cursor: pointer;
+  background-color: #d8d8d8;
+}
+
+
+

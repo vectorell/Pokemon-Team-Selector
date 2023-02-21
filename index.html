@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Pokémon Team Selector </title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/section-primary-team.css">
+  <link rel="stylesheet" href="css/section-reserves.css">
+  <link rel="stylesheet" href="css/section-team.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/info-container.css">
+  <!-- JavaScript -->
+  <script src="js/dom.js" defer></script>
+  <script src="js/fetching.js" type="module"></script>
+  <script src="js/eventlisteners.js" type="module"></script>
+  <script src="js/storage.js" type="module"></script>
+  <script src="js/script.js" type="module"></script>
+</head>
+<body>
+  
+  <!-- HEADER -->
+  <header>
+    <img class="title-header" src="pictures/titles/title-pokemon-team-selector-28.png" alt="Title: Pokémon Team Selector">
+  </header>
+  
+  
+
+  
+  <!-- SECTION PRIMARY TEAM --------------------------------------------------->
+  <section class="section__main display-primary-section" style="display:none;">
+    
+    <div class="container__page-header">
+      <img class="page-header display-primary-section" src="pictures/titles/title-primary-team-28.png" alt="Primary Team">
+    </div>
+    
+    <div class="search__container">
+      <p class="paragraph-search-info"> Search for the Pokémons you want to add to your <em><strong> team </strong></em>. </p>
+      <div class="container__input">
+        <input type="text" class="input-pokemon-search">
+        <button type="submit" class="button-search-submit"> Go! </button>
+      </div>
+    </div>
+    
+    <div class="results__container">
+      <p class="search-results"> Search results: </p>
+      <hr class="divider">
+<!-- 
+      <h3 class="section-placeholder-text"> Search for Pokémons to add to your team. <br> You <strong>must</strong> add exactly three Pokémons. </h3>
+       -->
+
+
+
+      <table class="results-table">
+        <tbody class="results-table-body">
+          <tr class="new-table-row">
+            <td class="td td-image"><img class="small-search-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"></td>
+            <td class="td td-name">ditto</td>
+
+          </tr>
+          <tr class="new-table-row">
+            <td class="td td-image">
+              <img class="small-search-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png">
+            </td>
+            <td class="td td-name">ditto</td>
+
+          </tr>
+          <tr class="new-table-row">
+            <td class="td td-image">
+              <img class="small-search-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png">
+            </td><td class="td td-name">ditto</td>
+            <!-- <td>Type:  normal</td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  <!-- FOOTER FÖR PRIMARY-SECTION-------------------------------------->
+  <footer>
+
+    <!-- Container för hela "valda Pokémons"-sektionen -->
+    <div class="container__pokemon__slots display-primary-section">
+      
+      <!-- RUBRIK -->
+      <p class="paragraph-chosen-pokemon display-primary-section"> <strong><em> Three </em></strong> out of <strong><em> three </em></strong> chosen Pokémons to <strong> primary </strong> team: </p>
+        
+      <!-- Valda Primary Pokémon-container -->
+      <div class="container__chosen__pokemons">
+      
+        <!-- Första valda Pokémon -->
+        <div class="chosen__pokemon first__chosen">
+          <img class="picture_chosen" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="First chosen Pokémon">
+          <p> <strong> #1: </strong> Ditto</p>
+        </div>
+        
+        <!-- Andra valda Pokémon -->
+        <div class="chosen__pokemon second__chosen">
+          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Second chosen Pokémon">
+          <p><strong> #2: </strong> Bulbasaur</p>
+        </div>
+        
+        <!-- Tredje valda Pokémon -->
+        <div class="chosen__pokemon third__chosen">
+          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Third chosen Pokémon">
+          <p><strong> #3: </strong> Bulbasaur</p>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Knapp för att gå till "Reserves"-->
+    <button class="button-bottom-nav button-reserve-team display-primary-section"> 
+      <img class="picture_chosen" src="pictures/buttons/button-to-reserve-team-28px.png" alt="To reserve team">
+    </button>
+    </div>
+  </footer>
+  
+</section>
+
+  
+  
+
+  <!-- SECTION RESERVE TEAM --------------------------------------------------->
+  <section class="section__main display-reserves-section"  style="display:none;">
+    
+    <div class="container__page-header">
+      <img class="page-header" src="pictures/titles/title-reserve-team-28px.png" alt="Reserve Team">
+    </div>
+    
+    <div class="search__container">
+      <p class="paragraph-search-info"> Search for the Pokémons you want to add to your <em><strong>reserves</strong></em>. </p>
+      <div class="container__input">
+        <input type="text" class="input-pokemon-search">
+        <button type="submit" class="button-search-submit"> Go! </button>
+      </div>
+    </div>
+    
+    <div class="results__container">
+      <p class="search-results"> Search results: </p>
+      <hr class="divider">
+
+      <h3 class="section-placeholder-text"> Search for Pokémons to add to your reserves. <br> You can add how many as you desire. </h3>
+
+    </div>
+
+
+
+  <!-- FOOTER FÖR RESERVES-SECTION ------------------------------------------------------>
+    <footer>
+
+    <!-- Container för hela reserves "valda Pokémons"-sektionen -->
+    <div class="container__pokemon__slots">
+      
+    <p class="paragraph-your-pokemons"> Your chosen <strong><em> reserve </em></strong>  Pokémons.</p>
+
+    <!-- Valda Primary Pokémon-container -->
+    <div class="container__chosen__pokemons">
+    
+      <!-- Första valda Pokémon -->
+      <div class="chosen__pokemon">
+        <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="First chosen Pokémon">
+        <p>Bulbasaur</p>
+      </div>
+      
+      <!-- Andra valda Pokémon -->
+      <div class="chosen__pokemon">
+        <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Second chosen Pokémon">
+        <p>Bulbasaur</p>
+      </div>
+      
+      </div>
+    </div>
+
+    <div class="nav-buttons-container">
+
+      <!-- Knapp för att gå tillbaka till search-->
+      <button class="button-bottom-nav button-search-pokemons"> 
+      <img class="picture_chosen" src="pictures/buttons/button-small-to-search-26px.png" alt="Search Pokémons">
+      </button>
+  
+      <!-- Knapp för att gå till "Your Team"-->
+      <button class="button-bottom-nav button-your-team"> 
+      <img class="picture_chosen" src="pictures/buttons/button-small-your-team-26px.png" alt="To your team">
+      </button>
+
+    </div>
+  </footer>
+</section>
+
+
+
+
+
+  <!-- SECTION MY TEAM --------------------------------------------------->
+  <section class="section__main display-team-section" style="display:none;">
+    
+    <div class="container__page-header">
+      <img class="page-header" src="pictures/titles/title-your-team-28px.png" alt="Your Team">
+    </div>
+    
+    <h3 class="section-placeholder-text"> Click on a Pokémon below to display its info here or to remove it from your team. </h3>
+
+    <!-- FOOTER FÖR TEAM-SECTION ----------------------------------------------------------->
+  <footer>
+
+    <!-- Container för hela PRIMARY "valda Pokémons"-sektionen --->
+    <div class="container__pokemon__slots">
+
+      <!-- RUBRIK PRIMARY -->
+      <p class="paragraph-your-pokemons paragraph-primary-pokemons"> Your chosen <strong><em> primary </em></strong>  Pokémons.</p>   
+
+      <!-- Valda Primary Pokémon-container -->
+      <div class="container__chosen__pokemons">
+      
+        <!-- Första valda primary Pokémon -->
+        <div class="chosen__pokemon">
+          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="First chosen Pokémon">
+          <p><strong> #1: </strong> Bulbasaur</p>
+        </div>
+        
+        <!-- Andra valda primary Pokémon -->
+        <div class="chosen__pokemon">
+          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Second chosen Pokémon">
+          <p><strong> #2: </strong> Bulbasaur</p>
+        </div>
+
+        <!-- Tredje valda primary Pokémon -->
+        <div class="chosen__pokemon">
+          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Second chosen Pokémon">
+          <p><strong> #3: </strong> Bulbasaur</p>
+        </div>
+      </div>
+
+    <!-- Container för hela RESERVES "valda Pokémons"-sektionen -->
+    <div class="container__pokemon__slots">
+        
+      <!-- RUBRIK RESERVES -->
+      <p class="paragraph-your-pokemons"> Your chosen <strong><em> reserve </em></strong>  Pokémons.</p>
+
+      <!-- Valda RESERVES Pokémon-container -->
+      <div class="container__chosen__pokemons">
+      
+        <!-- Första valda reserve Pokémon -->
+        <div class="chosen__pokemon">
+          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="First chosen Pokémon">
+          <p>Bulbasaur</p>
+        </div>
+        
+        <!-- Andra valda reserve Pokémon -->
+        <div class="chosen__pokemon">
+          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Second chosen Pokémon">
+          <p>Bulbasaur</p>
+        </div>
+
+        <!-- Tredje valda reserve Pokémon -->
+        <div class="chosen__pokemon">
+          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Second chosen Pokémon">
+          <p>Bulbasaur</p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Knapp för att gå till "Search Pokémons-->
+    <button class="button-bottom-nav button-back-to-reserve-team"> 
+      <img class="picture_chosen" src="pictures/buttons/button-back-to-reserves-28px.png" alt="Search Pokémons">
+    </button>
+  </footer>
+  </section>
+
+
+
+
+<!-- ---------------------------------------------------------------- -->
+
+<!-- INFORMATIONS-OVERLAY -->
+
+
+<section class="section__info display-info-section" style="display:none;">
+
+  <div class="container__info">
+
+    <div class="container__info__pokemon-picture">
+      <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Second chosen Pokémon">
+      <h2 class="title-pokemon-name"> Bulbasaur </h2>
+    </div>
+
+    <div class="container__info__pokemon-info">
+      <button class="button-close-overlay">
+        X
+      </button>
+      <p> <strong>Type:</strong> Grass</p>
+      <p> <strong>Species:</strong> Seed Pokémon</p>
+      <p> <strong>Base Exp:</strong> 64</p>
+      <p> <strong>Growth rate:</strong> medium slow</p>
+      <p> <strong>Abilities:</strong> <br> Overgrow, Chlorophyll</p>
+    </div>
+
+  </div>
+
+  <div class="container__buttons">
+
+    <!-- KNAPP: Lägg till i team -->
+    <button class="button-overlay button-add-to-team" style="display:none;">
+      Add to team!
+    </button>
+    
+    <input class="inputfield-custom-name" type="text" style="display:none;">
+
+    <!-- KNAPP: Lägg till i team med custom namn -->
+    <button class="button-overlay button-add-to-team-with-custom-name" style="display:none;">
+      Add to team!
+    </button>
+    
+    <!-- KNAPP: Ta bort från team -->
+    <button class="button-overlay button-remove-from-team" style="display:none;">
+      Remove from team!
+    </button>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
