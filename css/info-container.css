@@ -23,6 +23,11 @@
 
 .title-pokemon-name {
   font-size: 2.5em;
+  background-color: rgba(0, 0, 0, 0.38);
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  border-radius: 0.5em;
 }
 
 .container__info__pokemon-picture {
@@ -31,19 +36,23 @@
   justify-content: space-between;
   width: 50%;
   text-align: center;
+  color: white;
 }
 
 .container__info__pokemon-info {
+  background-color: rgba(0, 0, 0, 0.493);
+  /* background-color: rgb(255, 255, 255); */
   padding: 0.5em;
   border-bottom: 1px solid rgb(126, 126, 126);
   border-left: 1px solid rgb(125, 125, 125);
-  border-radius: 1em;
+  /* border-radius: 1em; */
   border-top-left-radius: 0em;
   border-bottom-right-radius: 0em;;
-  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 50%;
+  color:white;
 }
 
 .container__info__pokemon-info > p {
@@ -52,6 +61,13 @@
 
 
 .container__info {
+  box-shadow: var(--shadow);
+  background: url("/pictures/backgrounds/overlay-pokemon-picture-background/blue_stylish_halftone_comic_zoom_background.jpg");
+  background-size: cover;
+  /* overflow: hidden; */
+  /* background-position: 10%; */
+  background-position-x: left;
+  background-position-y: center;
   /* border: 1px dashed rgb(118, 118, 118); */
   display: flex;
   justify-content: space-around;
@@ -60,7 +76,7 @@
 }
 
 .button-close-overlay {
-  background-color: var(--color-pokemon-red);
+  background-color: var(--color-pokemon-darkred);
   border:none;
   color: white;
   font-weight: 600;
@@ -70,6 +86,15 @@
   height: 1.5em;
   position:absolute;
   right: 0.5em;
+  top: 0.5em;
+  transition: 0.2s;
+}
+
+.button-close-overlay:hover {
+  cursor: pointer;
+  transition: 0.2s;
+  transform: scale(110%);
+  background-color: var(--color-pokemon-red);
 }
 
 .container__buttons {

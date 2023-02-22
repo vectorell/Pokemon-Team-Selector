@@ -1,12 +1,24 @@
 // INHÄMTNING AV ALLA DOM-ELEMENT------------------
 
 function closeOverlay() {
-  sectionOverlay.style.display = 'none'
-  sectionOverlayDisplay.style.display = 'none'
-  buttonAddToTeam.style.display = 'none'
-  buttonAddToTeamWithName.style.display = 'none'
-  buttonRemoveFromTeam.style.display = 'none'
-  inputfieldCustomName.style.display = 'none'
+  overlaySection.style.display = 'none'
+  overlaySectionDisplay.style.display = 'none'
+  overlayButtonAddToTeam.style.display = 'none'
+  overlayButtonAddToTeamWithName.style.display = 'none'
+  overlayButtonRemoveFromTeam.style.display = 'none'
+  overlayInputfieldCustomName.style.display = 'none'
+
+  overlayParagraphPokemonType.innerText = ''
+  overlayParagraphPokemonBaseExp.innerText = ''
+  overlayParagraphPokemonAbilities.innerText = ''
+  overlayTitlePokemonName.innerText = ''
+  overlayContainerImagePokemon.innerHTML = ''
+
+
+
+
+
+
 }
 
 
@@ -26,15 +38,33 @@ const sectionMain = document.querySelector('.section__main')
 
 
 
-  // OVERLAY
-  const sectionOverlay = document.querySelector('.section__info')
-  const sectionOverlayDisplay = document.querySelector('.display-info-section')
-  const buttonCloseOverlay = document.querySelector('.button-close-overlay')
+//.-.- OVERLAY -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+  const overlaySection = document.querySelector('.section__info')
+  const overlaySectionDisplay = document.querySelector('.display-info-section')
 
-  const buttonAddToTeam = document.querySelector('.button-add-to-team')
-  const buttonAddToTeamWithName = document.querySelector('.button-add-to-team-with-custom-name')
-  const buttonRemoveFromTeam = document.querySelector('.button-remove-from-team')
-  const inputfieldCustomName = document.querySelector('.inputfield-custom-name')
+  //OVERLAY: Pokémon-title
+  let overlayTitlePokemonName = document.querySelector('.title-pokemon-name')
+
+  //OVERLAY: Pokémon-bild
+  let overlayImagePokemon = document.querySelector('.image-overlay-pokemon')
+
+  //OVERLAY: Container för Pokémonbild
+  let overlayContainerImagePokemon = document.querySelector('.container__info__pokemon-picture')
+  
+  //OVERLAY: Knappar
+  const overlayButtonClose = document.querySelector('.button-close-overlay')
+  const overlayButtonAddToTeam = document.querySelector('.button-add-to-team')
+  const overlayButtonAddToTeamWithName = document.querySelector('.button-add-to-team-with-custom-name')
+  const overlayButtonRemoveFromTeam = document.querySelector('.button-remove-from-team')
+  const overlayInputfieldCustomName = document.querySelector('.inputfield-custom-name')
+
+  //OVERLAY: Paragrafer för Info-punkterna
+  let overlayParagraphPokemonType = document.querySelector('.paragraph-overlay-pokemon-type')
+  let overlayParagraphPokemonBaseExp = document.querySelector('.paragraph-overlay-pokemon-base-exp')
+  let overlayParagraphPokemonAbilities = document.querySelector('.paragraph-overlay-pokemon-abilities')
+
+
+
   
 
   // Villkor omgjorda för
@@ -42,14 +72,14 @@ const sectionMain = document.querySelector('.section__main')
 
 
 
-
+  let savedData
 
 
   /** POKEMON-INFO */
   let pokemonContainer = document.querySelectorAll('.picture_chosen').forEach(item => {
       item.addEventListener('click', () => {
-        sectionOverlay.style.display = 'flex'
-        sectionOverlayDisplay.style.display = 'flex'
+        overlaySection.style.display = 'flex'
+        overlaySectionDisplay.style.display = 'flex'
 
         // Om PRIMARY-sida syns:
         if ((sectionPrimary.style.display == 'flex')) {
@@ -57,7 +87,7 @@ const sectionMain = document.querySelector('.section__main')
         } 
 
         else if (sectionYourTeam.style.display == 'flex') {
-          buttonRemoveFromTeam.style.display = 'flex'
+          overlayButtonRemoveFromTeam.style.display = 'flex'
         }
         
         
@@ -65,14 +95,14 @@ const sectionMain = document.querySelector('.section__main')
         
         
         else {
-          buttonAddToTeam.style.display = 'none'
-          buttonRemoveFromTeam.style.display = 'none'
+          overlayButtonAddToTeam.style.display = 'none'
+          overlayButtonRemoveFromTeam.style.display = 'none'
         }
       })
     })
     
     
-    buttonCloseOverlay.addEventListener('click', () => {
+    overlayButtonClose.addEventListener('click', () => {
       closeOverlay()
     })
 
@@ -107,7 +137,7 @@ const sectionMain = document.querySelector('.section__main')
     sectionPrimary.style.display = 'none'
     sectionReserves.style.display = 'flex'
     sectionYourTeam.style.display = 'none'
-    sectionOverlay.style.display = 'none'
+    overlaySection.style.display = 'none'
   })
   
   // Gå från reserves tillbaka till första sidan
@@ -115,7 +145,7 @@ const sectionMain = document.querySelector('.section__main')
     sectionPrimary.style.display = 'flex'
     sectionReserves.style.display = 'none'
     sectionYourTeam.style.display = 'none'
-    sectionOverlay.style.display = 'none'
+    overlaySection.style.display = 'none'
   })
   
   // Gå från reserves till 'Your Team'
@@ -123,7 +153,7 @@ const sectionMain = document.querySelector('.section__main')
     sectionPrimary.style.display = 'none'
     sectionReserves.style.display = 'none'
     sectionYourTeam.style.display = 'flex'
-    sectionOverlay.style.display = 'none'
+    overlaySection.style.display = 'none'
   })
   
   // Gå från 'Your Team tillbaka till första sidan
@@ -131,7 +161,7 @@ const sectionMain = document.querySelector('.section__main')
     sectionPrimary.style.display = 'none'
     sectionReserves.style.display = 'flex'
     sectionYourTeam.style.display = 'none'
-    sectionOverlay.style.display = 'none'
+    overlaySection.style.display = 'none'
   })
 
 

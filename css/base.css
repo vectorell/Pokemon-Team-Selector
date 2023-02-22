@@ -136,7 +136,7 @@ p {
   flex-direction: column;
 }
 
-.input-pokemon-search {
+.input-pokemon-search { 
   /* min-width: 20em; */
   height: 3em;
   /* border-radius: 0.5em; */
@@ -175,6 +175,7 @@ p {
   color:#727272;
   width: 90%;
   margin-bottom:15em;
+  text-align: center;
 }
 
 

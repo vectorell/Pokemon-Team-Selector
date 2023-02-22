@@ -13,10 +13,10 @@
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/info-container.css">
   <!-- JavaScript -->
+  <script src="js/storage.js"></script>
   <script src="js/dom.js" defer></script>
   <script src="js/fetching.js" type="module"></script>
   <script src="js/eventlisteners.js" type="module"></script>
-  <script src="js/storage.js" type="module"></script>
   <script src="js/script.js" type="module"></script>
 </head>
 <body>
@@ -53,28 +53,7 @@
 
 
 
-      <table class="results-table">
-        <tbody class="results-table-body">
-          <tr class="new-table-row">
-            <td class="td td-image"><img class="small-search-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"></td>
-            <td class="td td-name">ditto</td>
-
-          </tr>
-          <tr class="new-table-row">
-            <td class="td td-image">
-              <img class="small-search-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png">
-            </td>
-            <td class="td td-name">ditto</td>
-
-          </tr>
-          <tr class="new-table-row">
-            <td class="td td-image">
-              <img class="small-search-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png">
-            </td><td class="td td-name">ditto</td>
-            <!-- <td>Type:  normal</td> -->
-          </tr>
-        </tbody>
-      </table>
+       <!-- <table class="results-table"><tbody class="results-table-body"><tr class="pikachu new-table-row" id="pikachu"><td class="pikachu td td-image"><img class="pikachu small-search-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"></td><td class="pikachu td td-name">Pokémon:  pikachu</td><td class="pikachu td td-class">Type:  electric</td></tr><tr class="geodude new-table-row" id="geodude"><td class="geodude td td-image"><img class="geodude small-search-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png"></td><td class="geodude td td-name">Pokémon:  geodude</td><td class="geodude td td-class">Type:  rock</td></tr></tbody></table> -->
     </div>
 
 
@@ -285,19 +264,16 @@
   <div class="container__info">
 
     <div class="container__info__pokemon-picture">
-      <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Second chosen Pokémon">
-      <h2 class="title-pokemon-name"> Bulbasaur </h2>
+      <h2 class="title-pokemon-name">  </h2>
     </div>
 
     <div class="container__info__pokemon-info">
       <button class="button-close-overlay">
         X
       </button>
-      <p> <strong>Type:</strong> Grass</p>
-      <p> <strong>Species:</strong> Seed Pokémon</p>
-      <p> <strong>Base Exp:</strong> 64</p>
-      <p> <strong>Growth rate:</strong> medium slow</p>
-      <p> <strong>Abilities:</strong> <br> Overgrow, Chlorophyll</p>
+      <p class="paragraph-overlay-pokemon-type"> <strong>Type:</strong> </p>
+      <p class="paragraph-overlay-pokemon-base-exp"> <strong>Base Exp:</strong> </p>
+      <p class="paragraph-overlay-pokemon-abilities"> <strong>Abilities:</strong> <br> </p>
     </div>
 
   </div>
