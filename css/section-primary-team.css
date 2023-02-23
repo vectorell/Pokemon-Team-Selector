@@ -81,7 +81,11 @@ body {
   object-fit: none;
 }
 
-.td {
-  /* padding-left: 0.5em; */
-  
+.button-reserve-team {
+  /* background-color: gray; */
+  visibility: hidden;
+}
+.button-reserve-team:hover {
+  /* background-color: gray; */
+  visibility: visible;
 }

@@ -13,11 +13,13 @@
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/info-container.css">
   <!-- JavaScript -->
-  <script src="js/storage.js"></script>
-  <script src="js/dom.js" defer></script>
+  <script src="js/domFetches.js" defer></script>
+  <script src="js/functions.js" defer></script>
+  <script src="js/eventListeners.js" type="module"></script>
+  <!-- <script src="js/storage.js"></script>
   <script src="js/fetching.js" type="module"></script>
   <script src="js/eventlisteners.js" type="module"></script>
-  <script src="js/script.js" type="module"></script>
+  <script src="js/script.js" type="module"></script> -->
 </head>
 <body>
   
@@ -61,30 +63,30 @@
   <footer>
 
     <!-- Container för hela "valda Pokémons"-sektionen -->
-    <div class="container__pokemon__slots display-primary-section">
+    <div class="container__primary-pokemon-slots display-primary-section">
       
       <!-- RUBRIK -->
-      <p class="paragraph-chosen-pokemon display-primary-section"> <strong><em> Three </em></strong> out of <strong><em> three </em></strong> chosen Pokémons to <strong> primary </strong> team: </p>
+      <p class="paragraph-chosen-pokemon display-primary-section"> Choose <strong><em> three </em></strong> Pokémons to <strong> primary </strong> team: <br> (click on a Pokémon below to remove it) </p>
         
       <!-- Valda Primary Pokémon-container -->
-      <div class="container__chosen__pokemons">
+      <div class="container__chosen-primary-pokemons">
       
         <!-- Första valda Pokémon -->
-        <div class="chosen__pokemon first__chosen">
-          <img class="picture_chosen" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="First chosen Pokémon">
-          <p> <strong> #1: </strong> Ditto</p>
+        <div class="chosen-primary-pokemon first-chosen-primary-pokemon">
+          <img class="picture-chosen-primary picture-first-chosen-primary" src="/pictures/chosen-pokemon--blank-placeholder.png" alt="First chosen Pokémon">
+          <p class="first-chosen-primary-pokemon-name chosen-primary-pokemon-name">  #1: </p>
         </div>
         
         <!-- Andra valda Pokémon -->
-        <div class="chosen__pokemon second__chosen">
-          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Second chosen Pokémon">
-          <p><strong> #2: </strong> Bulbasaur</p>
+        <div class="chosen-primary-pokemon second-chosen-primary-pokemon">
+          <img class="picture-chosen-primary picture-second-chosen-primary" src="/pictures/chosen-pokemon--blank-placeholder.png" alt="Second chosen Pokémon">
+          <p class="second-chosen-primary-pokemon-name chosen-primary-pokemon-name"> #2: </p>
         </div>
         
         <!-- Tredje valda Pokémon -->
-        <div class="chosen__pokemon third__chosen">
-          <img class="picture_chosen" src="pictures/testbilder/bulbasaur-test-liten.png" alt="Third chosen Pokémon">
-          <p><strong> #3: </strong> Bulbasaur</p>
+        <div class="chosen-primary-pokemon third-chosen-primary-pokemon">
+          <img class="picture-chosen-primary picture-third-chosen-primary" src="/pictures/chosen-pokemon--blank-placeholder.png" alt="Third chosen Pokémon">
+          <p class="third-chosen-primary-pokemon-name chosen-primary-pokemon-name"> #3: </p>
         </div>
         
       </div>
@@ -254,9 +256,11 @@
 
 
 
-<!-- ---------------------------------------------------------------- -->
 
-<!-- INFORMATIONS-OVERLAY -->
+
+
+
+<!--******************* INFORMATIONS-OVERLAY *******************************-->
 
 
 <section class="section__info display-info-section" style="display:none;">
@@ -264,21 +268,28 @@
   <div class="container__info">
 
     <div class="container__info__pokemon-picture">
-      <h2 class="title-pokemon-name">  </h2>
     </div>
-
+    
     <div class="container__info__pokemon-info">
       <button class="button-close-overlay">
         X
       </button>
+      <h2 class="title-pokemon-name">  </h2>
       <p class="paragraph-overlay-pokemon-type"> <strong>Type:</strong> </p>
       <p class="paragraph-overlay-pokemon-base-exp"> <strong>Base Exp:</strong> </p>
       <p class="paragraph-overlay-pokemon-abilities"> <strong>Abilities:</strong> <br> </p>
     </div>
-
+    
   </div>
 
+  <div class="overlay-message-div">
+    <p class="overlay-message-paragraph" style="visibility: hidden;">
+      " "
+    </p>
+
+  </div>
   <div class="container__buttons">
+    
 
     <!-- KNAPP: Lägg till i team -->
     <button class="button-overlay button-add-to-team" style="display:none;">
@@ -293,12 +304,10 @@
     </button>
     
     <!-- KNAPP: Ta bort från team -->
-    <button class="button-overlay button-remove-from-team" style="display:none;">
+    <button class="button-overlay button-remove-from-team" style="visibility:hidden;">
       Remove from team!
     </button>
-
   </div>
-
 </section>
 
 

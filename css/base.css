@@ -26,6 +26,7 @@ footer {
 
 body {
   flex-direction: column;
+  transition: 0.3s;
 }
 
 p {
@@ -61,7 +62,7 @@ p {
 
 
 /* -----------------CONTAINER FÖR VALDA POKÉMONS */
-.container__pokemon__slots {
+.container__primary-pokemon-slots {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -72,12 +73,12 @@ p {
   padding-top: 0.5em;
 }
 
-.container__chosen__pokemons {
+.container__chosen-primary-pokemons {
   display: flex;
   justify-content: space-around;
 }
 
-.chosen__pokemon {
+.chosen-primary-pokemon {
   border: 1px solid rgba(134, 134, 134, 0);
   margin-top: 0.5em;
   margin-bottom: 0.5em;
@@ -90,17 +91,27 @@ p {
   flex-direction: column;
 }
 
-.chosen__pokemon > img {
+.picture-chosen-primary {
+  border: 1px solid rgba(113, 113, 113, 0);
+  border-radius: 0.5em;
+}
+
+.picture-chosen-primary > img {
   width: 55px;
   height: 55px;
   object-fit: none;
 }
 
-.chosen__pokemon:hover {
+.picture-chosen-primary:hover {
   border: 1px solid rgb(134, 134, 134);
   transition: 0.1s;
   transform: scale(105%);
   cursor: pointer;
+}
+
+.picture-chosen-primary:active {
+
+  background-color: var(--color-pokemon-darkred);
 }
 
 /* --------------------NAVIGATIONSKNAPP I BOTTEN */

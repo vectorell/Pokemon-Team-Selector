@@ -1,12 +1,3 @@
-let baseUrl = 'https://pokeapi.co/api/v2/pokemon/'
-let options = {}
-let data
-
-let errorText = document.createElement('h3')
-errorText.className = 'errortext'
-errorText.innerText = 'No such Pokémon found!'
-errorText.style.display = 'none'
-resultsContainer.append(errorText)
 
 
 
@@ -24,44 +15,6 @@ resultsContainer.append(errorText)
 
 
 
-// EVENTLYSSNARE - INHÄMTNING AV DATA VID MUSKLICK PÅ "Go!"-KNAPPEN > Rendering till sida
-// -'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'-'
-searchButton.addEventListener('click', async() => {
-  searchPlaceholderText.style.display = 'none'
-
-  
-  let submittedData = (searchInputfield.value).toLowerCase()
-  // console.log(submittedData)
-  
-  if (submittedData != '') {
-
-    try {
-      newTableBody.innerHTML = ''
-      errorText.style.display = 'none'
-      let response = await fetch((baseUrl+submittedData), options)
-      let data = await response.json()
-      savedData = data
-      // let data = {
-      //   name: 'ditto',
-      //   types: 'normal',
-      //   sprites: {front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'}
-      // }
-      // console.log(data)
-      saveDataToLocalStorage()
-      renderSearchResults(data)
-      // searchInputfield.value = ''
-      
-    } catch (error) {
-      console.log('fel!')
-      errorText.innerText = 'No such Pokémon found!'
-      errorText.style.display = 'block'
-      
-    }
-  } else if (submittedData == '') {
-    errorText.innerText = 'Please enter something..'
-    errorText.style.display = 'block'
-  }
-})
 
 
 
