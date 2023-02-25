@@ -1,36 +1,142 @@
+let pokemonArray
+
+loadPokemons()
+
+
+
+async function loadPokemons () {
+    
+    
+    let isLocalStorageEmpty = (localStorage.getItem(LS_KEY) == null)
+
+    // Om LS är tomt, hämta in alla pokemons från API, 
+    // spara till LS och definera 'pokemonArray'
+    if ( isLocalStorageEmpty ) {
+
+
+        let response = await fetch(getAllPokemonsUrl, options)
+        data = await response.json()
+        pokemonArray = data.results
+    
+        let stringToSave = JSON.stringify(pokemonArray)
+        localStorage.setItem(LS_KEY, stringToSave)
+
+    // Annars om LS inte är tomt, hämta alla pokemons från LS,
+    // definera pokemonArray
+    } else {
+
+        let stringFromLocalStorage = localStorage.getItem(LS_KEY)
+        let arrayFromLocalStorage = JSON.parse(stringFromLocalStorage)
+        pokemonArray = arrayFromLocalStorage
+
+    }
+
+
+}   
+
+
+
+async function getPokemonDetails(pokemon) {
+    let response = await fetch(pokemon.url)
+    let data = await response.json()
+    return data
+}
+
+
+async function searchPokemon(searchInput) {
+    
+    function comparePokemonNames(pokemon) {
+
+        if ((pokemon.name.includes('-')) == false) {
+            return pokemon.name.includes(searchInput.toLowerCase())
+        }
+    }
+    
+    let foundPokemonsArray = pokemonArray.filter(comparePokemonNames)
+
+    let pokemonDetailsArray = []
+
+
+    let pokemonListHasChanges = false;
+    for (const foundPokemon of foundPokemonsArray) {
+        if (foundPokemon.details == null) {
+
+            const pokemonDetails = await getPokemonDetails(foundPokemon)
+            foundPokemon.details = pokemonDetails
+            console.log(foundPokemon)
+            // pokemonDetailsArray.push(pokemonDetails)
+    
+            let indexedPokemon =  getPokemonByName(foundPokemon.name)  
+            
+            indexedPokemon.details = pokemonDetails
+            pokemonListHasChanges = true;
+        }
+
+    }
+
+    if(pokemonListHasChanges)
+    {
+      let stringToSave = JSON.stringify(pokemonArray)
+      localStorage.setItem(LS_KEY, stringToSave)
+    }
+
+
+
+    return foundPokemonsArray
+}
+
+
+
+function getPokemonByName(pokemonName) {
+
+    return pokemonArray.find(indexedPokemon => indexedPokemon.name == pokemonName)
+
+}
+
+
+  
+
+
+
+
+
+
+
+  
+  
   // FUNKTION
 // 1. Tabellgenerator som renderar sökt Pokémons information till sidan
 // 2. Gör varje genererad tabellrad klickbar mha "makeNewRowesClickable()"-funktionen.
-function renderSearchResults(data) {
+function renderPokemonDetails(pokemonDetails) {
   
   // SKAPAR EN NY TABELLRAD
     resultsContainer.append(newTable)
     let newTableRow = document.createElement('tr')
-    newTableRow.className = `${data.name} select new-table-row`
-    newTableRow.id = data.name
+    newTableRow.className = `${pokemonDetails.name} select new-table-row`
+    newTableRow.id = pokemonDetails.name
     newTableBody.append(newTableRow)
   
   // SKAPAR BILD OCH LÄGGER IN I TABELLRAD
     let newTableDataImage = document.createElement('td')
-    newTableDataImage.className = `${data.name} td td-image`
-    newTableDataImage.innerHTML = `<img class="${data.name} small-search-image" src="${data.sprites.front_default}">`
+    newTableDataImage.className = `${pokemonDetails.name} td td-image`
+    newTableDataImage.innerHTML = `<img class="${pokemonDetails.name} small-search-image" src="${pokemonDetails.sprites.front_default}">`
     newTableRow.append(newTableDataImage)
   
   // SKAPAR NAMN OCH LÄGGER IN I TABELLRAD
     let newTableDataName = document.createElement('td')
-    newTableDataName.className = `${data.name} td td-name`
-    newTableDataName.innerText = 'Pokémon:  ' + capitalizeFirstLetter(data.name) 
+    newTableDataName.className = `${pokemonDetails.name} td td-name`
+    newTableDataName.innerText = 'Pokémon:  ' + capitalizeFirstLetter(pokemonDetails.name) 
     newTableRow.append(newTableDataName)
   
   // SKAPAR POKÉMONTYP OCH LÄGGER IN I TABELLRAD
     let newTableDataType = document.createElement('td')
-    newTableDataType.className = `${data.name} td td-class`
+    newTableDataType.className = `${pokemonDetails.name} td td-class`
 
 
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         
         
-        newTableDataType.innerText = 'Type:  ' + capitalizeFirstLetter(data.types[0].type.name)
+        newTableDataType.innerText = 'Type:  ' + capitalizeFirstLetter(pokemonDetails.types[0].type.name)
         // newTableDataType.className = ` ${data.name}`
         // newTableDataType.innerText = 'Type:  ' + data.types
         
@@ -69,25 +175,28 @@ function clearOverlay() {
 
 
 // FUNKTION: RENDERING TILL OVERLAY (körs vid 'click')
-function renderToOverlay(data) {
+function renderToOverlay(pokemonDetails) {
 
-    // Gör första bokstav i Pokémonnamn till stor bokstav
-    overlayTitlePokemonName.innerText = capitalizeFirstLetter(data.name) 
+    if (pokemonDetails.customName) {
+        overlayTitlePokemonName.innerText = capitalizeFirstLetter(pokemonDetails.customName) 
+    } else {
+        overlayTitlePokemonName.innerText = capitalizeFirstLetter(pokemonDetails.name) 
+    }
 
     // Mha denna funktion hämtas och returneras samtliga 'types'
     let fetchedTypes = []
-    data.types.forEach(type => {
+    pokemonDetails.types.forEach(type => {
         fetchedTypes.push(' ' + type.type.name)
         return fetchedTypes
     })
 
     overlayParagraphPokemonType.innerText = `Type(s): ${fetchedTypes}`
     
-    overlayParagraphPokemonBaseExp.innerText = `Base Exp: ${data.base_experience}`
+    overlayParagraphPokemonBaseExp.innerText = `Base Exp: ${pokemonDetails.base_experience}`
 
     // Mha denna funktion hämtas och returneras samtliga 'abilities'
     let fetchedAbilities = []
-    data.abilities.forEach(ability => {
+    pokemonDetails.abilities.forEach(ability => {
         fetchedAbilities.push(' ' + ability.ability.name)
         return fetchedAbilities
     })
@@ -96,8 +205,8 @@ function renderToOverlay(data) {
 
     // Här skapas en bild som sedan renderas
     let overlayImagePokemon = document.createElement('img')
-    overlayImagePokemon.src = data.sprites.front_default
-    overlayImagePokemon.alt = data.name
+    overlayImagePokemon.src = pokemonDetails.sprites.front_default
+    overlayImagePokemon.alt = pokemonDetails.name
     overlayContainerImagePokemon.prepend(overlayImagePokemon)
 
 
@@ -106,7 +215,6 @@ function renderToOverlay(data) {
 
 
 
-const LS_KEY = 'pokemons'
 
 function saveDataToLocalStorage() {
     let stringFromLocalStorage = localStorage.getItem(LS_KEY)

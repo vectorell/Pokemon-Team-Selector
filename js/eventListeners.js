@@ -76,21 +76,29 @@ newTableBody.addEventListener('click', async(event) => {
     let classString = await event.target.className
     let splitUpClasses = await classString.split(' ')
     targetClass = await splitUpClasses[0]
-    console.log(targetClass)
-  
-    if (targetClass != savedData.name) {
-        let response = await fetch((baseUrl+targetClass), options)
-        let data = await response.json()
-        console.log('data was fetched')
-        
-        renderToOverlay(data)
-        console.log('ny data hämtad')
-        savedData = data
+    state.selectedPokemon = targetClass
 
-    } else if (targetClass == savedData.name) {
-        renderToOverlay(savedData)
-        console.log('sparad data använd')
-    }
+    // console.log(targetClass)
+  
+    // if (targetClass != savedData.name) {
+    //     let response = await fetch((baseUrl+targetClass), options)
+    //     let data = await response.json()
+    //     console.log('data was fetched')
+        
+    //     renderToOverlay(data)
+    //     console.log('ny data hämtad')
+    //     savedData = data
+
+    // } else if (targetClass == savedData.name) {
+    //     renderToOverlay(savedData)
+    //     console.log('sparad data använd')
+    // }
+
+
+
+    
+
+    renderToOverlay( getPokemonByName(targetClass).details )
 
     // lägger till "Add to team!"-knapp
     overlayButtonAddToTeam.style.display = 'flex'
@@ -107,18 +115,35 @@ searchButton.addEventListener('click', async() => {
     
     searchPlaceholderText.style.display = 'none'
     
-    let submittedData = (searchInputfield.value).toLowerCase()
-    // console.log(submittedData)
+    let submittedData = searchInputfield.value
+
+    
+    
     
     if (submittedData != '') {
         try {
+            
+            
             newTableBody.innerHTML = ''
             errorText.style.display = 'none'
-            let response = await fetch((baseUrl+submittedData), options)
-            let data = await response.json()
-            savedData = data
-            saveDataToLocalStorage()
-            renderSearchResults(data)
+            
+            let pokemonsToRender = await searchPokemon(submittedData)
+            
+            pokemonsToRender.forEach( pokemon => {
+                renderPokemonDetails(pokemon.details)
+
+            })
+
+
+
+
+
+
+
+            // let response = await fetch((baseUrl+submittedData), options)
+            // let data = await response.json()
+            // savedData = data
+            // saveDataToLocalStorage()
             // searchInputfield.value = ''
             
         } catch (error) {
@@ -181,8 +206,12 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
     
     overlayContainerImagePokemon.innerHTML = ''
     
+    let pokemonDetails = getPokemonByName(state.selectedPokemon).details
+
     // Om angivit custom namn på pokemonen, låt det vara pokemonens namn
-    if (overlayInputfieldCustomName.value != '') { savedData.name = overlayInputfieldCustomName.value }
+    let pokemonName = pokemonDetails.name
+    if (overlayInputfieldCustomName.value != '') { pokemonName = overlayInputfieldCustomName.value }
+    //if (overlayInputfieldCustomName.value != '') { pokemonDetails.customName = overlayInputfieldCustomName.value }
     
     if (state.currentView == 'primary') {
         
@@ -198,8 +227,9 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
             //   {abilities: capitalizeFirstLetter(savedData.abilities[0].ability.name) }
             // ]
 
-            firstPrimaryChosenPicture.src = savedData.sprites.front_default
-            firstPrimaryChosenName.innerText = capitalizeFirstLetter(savedData.name)
+            firstPrimaryChosenPicture.src = pokemonDetails.sprites.front_default
+            firstPrimaryChosenName.dataset.originalName = pokemonDetails.name
+            firstPrimaryChosenName.innerText = capitalizeFirstLetter(pokemonName)
             closeOverlayAndHideButtons()
 
             ++slotsCount
@@ -208,8 +238,9 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
     
         // Om slot 2 inte är upptaget, välj slot 2
         else if ((secondPrimaryChosenName.innerText.includes('#2:')) == true ) {
-            secondPrimaryChosenPicture.src = savedData.sprites.front_default
-            secondPrimaryChosenName.innerText = capitalizeFirstLetter(savedData.name)
+            secondPrimaryChosenPicture.src = pokemonDetails.sprites.front_default
+            secondPrimaryChosenName.dataset.originalName = pokemonDetails.name
+            secondPrimaryChosenName.innerText = capitalizeFirstLetter(pokemonName)
             closeOverlayAndHideButtons()
         
             ++slotsCount
@@ -218,8 +249,9 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
     
         // Om slot 3 inte är upptaget, välj slot 3
         else if ((thirdPrimaryChosenName.innerText.includes('#3:')) == true ) {
-            thirdPrimaryChosenPicture.src = savedData.sprites.front_default
-            thirdPrimaryChosenName.innerText = capitalizeFirstLetter(savedData.name)
+            thirdPrimaryChosenPicture.src = pokemonDetails.sprites.front_default
+            thirdPrimaryChosenName.dataset.originalName = pokemonDetails.name
+            thirdPrimaryChosenName.innerText = capitalizeFirstLetter(pokemonName)
             closeOverlayAndHideButtons()
 
             ++slotsCount
@@ -246,13 +278,56 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
         console.log('NU KÖRS RESERVES!')
         
         // Om angivit custom namn på pokemonen, låt det vara pokemonens namn
-        if (overlayInputfieldCustomName.value != '') { savedData.name = overlayInputfieldCustomName.value }
+        if (overlayInputfieldCustomName.value != '') { pokemonName = overlayInputfieldCustomName.value }
         
         // När vi lägger till pokemonen, så vill vi;
         
         // 1. Skapa en div med klassnamn 'chosen__reserve-pokemon'
         let newDivChosenReservePokemon = document.createElement('div')
         newDivChosenReservePokemon.className = 'chosen__reserve-pokemon chosen-pokemon'
+        newDivChosenReservePokemon.addEventListener('click', (event) => {
+
+            targetPokemon = event.target
+            console.log('klick på any')
+            targetToRemove = event.target.alt
+            console.log(event)
+            // console.log(target)
+    
+            let targetName = (event.target.nextElementSibling.innerText).toLowerCase()
+            console.log(targetName)
+
+            event.target.nextElementSibling.dataset.originalName = pokemonDetails.name
+    
+            state.selectedPokemon = event.target.nextElementSibling.dataset.originalName
+    
+            pokemonDetails = getPokemonByName(state.selectedPokemon).details
+            let newPokemonDetails = {}
+            Object.assign(newPokemonDetails, pokemonDetails)
+    
+            newPokemonDetails.name = capitalizeFirstLetter(pokemonName) 
+            console.log(newPokemonDetails)
+    
+            // async function fetchData() {
+            //     let response = await fetch((baseUrl+targetName), {})
+            //     let data = await response.json()
+                overlayContainerImagePokemon.innerHTML = ''
+                renderToOverlay(newPokemonDetails)
+            // }
+    
+            // fetchData()
+    
+    
+    
+            overlayButtonRemoveFromTeam.style.visibility = 'visible'
+            // overlaySection.style.display = 'flex'
+    
+            navigateTo('overlay')
+        })
+        // newDivChosenReservePokemon.onclick = function() {
+        //     //chosenPokemonClicked(this);
+        //     alert('hej hej')
+        //     console.log(this)
+        // }
 
         // 2. Appenda 'chosen__reserve-pokemon' till 'container__chosen-reserve-pokemons'
         containerChosenReservePokemon.append(newDivChosenReservePokemon)
@@ -264,8 +339,8 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
         
         
         // 4. Lägga in src + alt
-        newPictureOfChosenPokemon.src = savedData.sprites.front_default
-        newPictureOfChosenPokemon.alt = `Reserv Pokémon ${savedData.name}`
+        newPictureOfChosenPokemon.src = pokemonDetails.sprites.front_default
+        newPictureOfChosenPokemon.alt = `Reserv Pokémon ${pokemonDetails.name}`
         
         // 5. Appenda till div 'chosen__reserve-pokemon'
         newDivChosenReservePokemon.append(newPictureOfChosenPokemon)
@@ -275,7 +350,7 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
         newNameOfChosenPokemon.className = 'chosen-reserve-pokemon-name'
 
         // 7. Ändra innerText till hämtat namn
-        newNameOfChosenPokemon.innerText = savedData.name
+        newNameOfChosenPokemon.innerText = pokemonName
 
         // 8. Appenda till 'chosen__reserve-pokemon'
         newDivChosenReservePokemon.append(newNameOfChosenPokemon)
@@ -289,34 +364,34 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
         
         
 // Ta bort pokémon från slots
-pictureChosenPrimary.forEach(item => {
-    item.addEventListener('click', (event) => {
+// pictureChosenPrimary.forEach(item => {
+//     item.addEventListener('click', (event) => {
         
-        if (state.isPrimarySelectedDeletable == true) {
-            console.log(event)
-            event.target.src = "/pictures/chosen-pokemon--blank-placeholder.png"
+//         if (state.isPrimarySelectedDeletable == true) {
+//             console.log(event)
+//             event.target.src = "/pictures/chosen-pokemon--blank-placeholder.png"
     
-            if (event.target.alt == "First chosen Pokémon") {
-                event.target.nextElementSibling.innerText = '#1:'
-                slotsCount--
-                chosenCountPart.innerText = slotsCount
-            }
+//             if (event.target.alt == "First chosen Pokémon") {
+//                 event.target.nextElementSibling.innerText = '#1:'
+//                 slotsCount--
+//                 chosenCountPart.innerText = slotsCount
+//             }
         
-        else if (event.target.alt == "Second chosen Pokémon") {
-            event.target.nextElementSibling.innerText = '#2:'
-            slotsCount--
-            chosenCountPart.innerText = slotsCount
+//         else if (event.target.alt == "Second chosen Pokémon") {
+//             event.target.nextElementSibling.innerText = '#2:'
+//             slotsCount--
+//             chosenCountPart.innerText = slotsCount
             
-            } else if (event.target.alt == "Third chosen Pokémon") {
-                event.target.nextElementSibling.innerText = '#3:'
-                slotsCount--
-                chosenCountPart.innerText = slotsCount
-            }
+//             } else if (event.target.alt == "Third chosen Pokémon") {
+//                 event.target.nextElementSibling.innerText = '#3:'
+//                 slotsCount--
+//                 chosenCountPart.innerText = slotsCount
+//             }
     
-        areAllSlotsAssigned()
-    }
-    })
-})
+//         areAllSlotsAssigned()
+//     }
+//     })
+// })
 
 
 navButtonBackToSearch.addEventListener('click', () => {
@@ -348,14 +423,23 @@ allChosenPokemonDivs.forEach(item => {
         let targetName = (event.target.nextElementSibling.innerText).toLowerCase()
         console.log(targetName)
 
-        async function fetchData() {
-            let response = await fetch((baseUrl+targetName), {})
-            let data = await response.json()
-            overlayContainerImagePokemon.innerHTML = ''
-            renderToOverlay(data)
-        }
+        state.selectedPokemon = event.target.nextElementSibling.dataset.originalName
 
-        fetchData()
+        let pokemonDetails = getPokemonByName(state.selectedPokemon).details
+        let newPokemonDetails = {}
+        Object.assign(newPokemonDetails, pokemonDetails)
+
+        newPokemonDetails.name = capitalizeFirstLetter(targetName) 
+        console.log(newPokemonDetails)
+
+        // async function fetchData() {
+        //     let response = await fetch((baseUrl+targetName), {})
+        //     let data = await response.json()
+            overlayContainerImagePokemon.innerHTML = ''
+            renderToOverlay(newPokemonDetails)
+        // }
+
+        // fetchData()
 
 
 

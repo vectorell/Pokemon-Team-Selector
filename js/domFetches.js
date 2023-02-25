@@ -1,6 +1,7 @@
 let state = {
     currentView: 'primary',
-    isPrimarySelectedDeletable: false
+    isPrimarySelectedDeletable: false,
+    selectedPokemon: ''
 }
 
 
@@ -149,15 +150,15 @@ newTable.append(newTableBody)
 
 let savedData
 
-  let baseUrl = 'https://pokeapi.co/api/v2/pokemon/'
+  let getAllPokemonsUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0'
   let options = {}
   let data
+  let LS_KEY = 'pokemons'
+  
   
   let errorText = document.createElement('h3')
   errorText.className = 'errortext'
   errorText.innerText = 'No such Pokémon found!'
   errorText.style.display = 'none'
   resultsContainer.append(errorText)
-
-
 
