@@ -82,10 +82,22 @@ body {
 }
 
 .button-reserve-team {
-  /* background-color: gray; */
-  visibility: hidden;
+  filter: grayscale(100%) blur(5px);
 }
 .button-reserve-team:hover {
   /* background-color: gray; */
   visibility: visible;
+}
+
+.container__chosen-count, .container__chosen-reserve {
+  /* border: 1px dashed green; */
+  /* min-width: 20em; */
+  display:flex;
+  gap: 0.4em;
+  font-size: 1.2em;
+  padding: 0.5em;
+}
+
+.part, .sum {
+  font-weight: 600;
 }

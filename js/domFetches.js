@@ -1,3 +1,14 @@
+let state = {
+    currentView: 'primary',
+    isPrimarySelectedDeletable: false
+}
+
+
+
+// behövs för slots räkneverk
+let slotsCount = 0
+
+
 /************** 1: INHÄMTNING AV ALLA DOM-ELEMENT*****************************/
 
   // ------------"UNIVERSIALA DOM-ELEMENT" ---------------------------
@@ -21,17 +32,49 @@
 
   // ------------DOM-ELEMENT I SEKTION "PRIMARY-TEAM" -------------------
     const sectionPrimary = document.querySelector('.display-primary-section')
+
+    const pageHeader = document.querySelector('.page-header')
+
     const resultsContainer = document.querySelector('.results__container')
     const tableBody = document.querySelector('.results-table-body')
 
+    const chosenCountContainer = document.querySelector('.container__chosen-count')
+    const chosenCountPart = document.querySelector('.part')
+    const chosenCountSum = document.querySelector('.sum')
+    
+    const chosenReserveContainerText = document.querySelector('.container__chosen-reserve')
+
+
+
+
+  // ------------ DOM-ELEMENT I SEKTION "RESERVE-TEAM" -------------------
+    
+    // Search
+    const sectionReserves = document.querySelector('.display-reserves-section')
+    const searchInputfieldReserve = document.querySelector('.input-reserve-pokemon-search')
+    const searchButtonReserve = document.querySelector('.button-reserve-search-submit')
+
+
+
+  // ------------DOM-ELEMENT I SEKTION "YOUR-TEAM" -----------------------
+    const sectionYourTeam = document.querySelector('.display-team-section')
+
     // slotsParagraph
     const slotsParagraph = document.querySelector('.paragraph-chosen-pokemon')
+      
+
 
     // ALLA SLOTS
     const allChosenPrimaryPokemonDivs = document.querySelectorAll('.chosen-primary-pokemon')
     const pictureChosenPrimary = document.querySelectorAll('.picture-chosen-primary')
+    
     const containerChosenPrimaryPokemon = document.querySelectorAll('.container__chosen-primary-pokemons')
+
+    const containerChosenReservePokemon = document.querySelector('.container__chosen-reserve-pokemons')
+    
     const allChosenPrimaryPokemonName = document.querySelectorAll('.chosen-primary-pokemon-name')
+
+    let allChosenPokemonDivs = document.querySelectorAll('.chosen-pokemon')
 
     // SLOT 1
     const firstPrimaryChosenDiv = document.querySelector('.first-chosen-primary-pokemon')
@@ -47,19 +90,6 @@
     const thirdPrimaryChosenDiv = document.querySelector('.third-chosen-primary-pokemon')
     const thirdPrimaryChosenPicture = document.querySelector('.picture-third-chosen-primary')
     const thirdPrimaryChosenName = document.querySelector('.third-chosen-primary-pokemon-name')
-
-
-
-
-  // ------------ DOM-ELEMENT I SEKTION "RESERVE-TEAM" -------------------
-    const sectionReserves = document.querySelector('.display-reserves-section')
-
-
-
-
-  // ------------DOM-ELEMENT I SEKTION "YOUR-TEAM" -----------------------
-    const sectionYourTeam = document.querySelector('.display-team-section')
-  
 
 
   
@@ -110,8 +140,14 @@ newTable.append(newTableBody)
 
 
 /*************** DETTA ANVÄNDS FÖR START ****************' */
+
   sectionPrimary.style.display = 'flex'
-  let savedData
+//   sectionReserves.style.display = 'flex'
+
+
+
+
+let savedData
 
   let baseUrl = 'https://pokeapi.co/api/v2/pokemon/'
   let options = {}
