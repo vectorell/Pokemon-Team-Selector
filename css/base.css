@@ -95,7 +95,7 @@ p {
   flex-direction: column;
 }
 
-.picture-chosen-primary {
+.picture-chosen-primary, .picture_chosen-reserve {
   border: 1px solid rgba(113, 113, 113, 0);
   border-radius: 0.5em;
 }
@@ -106,14 +106,20 @@ p {
   object-fit: none;
 }
 
-.picture-chosen-primary:hover {
+.picture_chosen-reserve > img {
+  width: 55px;
+  height: 55px;
+  object-fit: none;
+}
+
+.picture-chosen-primary:hover, .picture_chosen-reserve:hover {
   border: 1px solid rgb(134, 134, 134);
   transition: 0.1s;
   transform: scale(105%);
   cursor: pointer;
 }
 
-.picture-chosen-primary:active {
+.picture-chosen-primary:active, .picture_chosen-reserve:active {
 
   background-color: var(--color-pokemon-darkred);
 }

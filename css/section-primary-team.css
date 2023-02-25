@@ -5,25 +5,6 @@ body {
   display: flex;
 }
 
-.developer-container {
-  color: black;
-  border: 1px solid black;
-  border-radius: 0.5em;
-  padding: 0.5em;
-  margin-top:0.5em;
-  box-shadow: var(--shadow);
-  transition: 0.1s;
-}
-
-.developer-container:hover {
-  transition: 0.1s;
-  transform: scale(103%);
-  cursor: pointer;
-  background-color: #d8d8d8;
-}
-
-
-
 
 /* DENNA RAD SKA VARA LÄNGST NED */
 /* .display-primary-section { display: none; } */
@@ -101,3 +82,4 @@ body {
 .part, .sum {
   font-weight: 600;
 }
+

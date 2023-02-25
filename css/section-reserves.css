@@ -90,6 +90,7 @@ body {
 }
 
 .container__reserve-pokemon-slots {
+    min-height: 10em;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.685);
     color: white;

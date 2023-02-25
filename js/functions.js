@@ -1,18 +1,18 @@
 let pokemonArray
 
+
 loadPokemons()
 
 
-
 async function loadPokemons () {
-    
+// Laddar alla Pokémons från API från start, om det inte redan finns (dock ej detaljerad info).
+// Sparar dessutom en lokal array (pokemonArray) som kommer att anropas istället för API:et genom programmet.
     
     let isLocalStorageEmpty = (localStorage.getItem(LS_KEY) == null)
 
     // Om LS är tomt, hämta in alla pokemons från API, 
     // spara till LS och definera 'pokemonArray'
     if ( isLocalStorageEmpty ) {
-
 
         let response = await fetch(getAllPokemonsUrl, options)
         data = await response.json()
@@ -28,14 +28,13 @@ async function loadPokemons () {
         let stringFromLocalStorage = localStorage.getItem(LS_KEY)
         let arrayFromLocalStorage = JSON.parse(stringFromLocalStorage)
         pokemonArray = arrayFromLocalStorage
-
     }
-
-
 }   
 
 
 
+
+// Funktion för att hämta detaljerad info om en enskild Pokémon.
 async function getPokemonDetails(pokemon) {
     let response = await fetch(pokemon.url)
     let data = await response.json()
@@ -43,68 +42,66 @@ async function getPokemonDetails(pokemon) {
 }
 
 
-async function searchPokemon(searchInput) {
-    
-    function comparePokemonNames(pokemon) {
 
+
+
+async function searchPokemon(searchInput) {
+/**Funktion för att söka efter Pokémons, och returnera resultatet (foundPokemonsArray).
+ * Denna funktion filtrerar bort olika icke-originala Pokémon-varianter, samt fetchar fram detaljer från APIet
+ * för de Pokémon som dyker upp i sökresultatet (om inte redan detaljerna hämtats en gång).
+ * Dessa detaljer sparas in både i den lokala arrayen samt till localstorage, under 'details'. */
+    
+    // Funktion för att filtrera bort icke-originala Pokémon-varianter,
+    // samt att returnera alla Pokémon-namn som innehåller det som finns i sökfältet.
+    function comparePokemonNames(pokemon) {
         if ((pokemon.name.includes('-')) == false) {
             return pokemon.name.includes(searchInput.toLowerCase())
         }
     }
     
+    // Exekverar ovanstående funktion och sparar resultatet i 'foundPokemonsArray'
     let foundPokemonsArray = pokemonArray.filter(comparePokemonNames)
 
     let pokemonDetailsArray = []
-
-
     let pokemonListHasChanges = false;
+
+    // För varje funnen Pokémon: om denna Pokémon INTE har hämtade detaljer, hämta dem från APIet
+    // och tilldela detaljerna till Pokémon-objektet.
     for (const foundPokemon of foundPokemonsArray) {
         if (foundPokemon.details == null) {
 
             const pokemonDetails = await getPokemonDetails(foundPokemon)
             foundPokemon.details = pokemonDetails
             console.log(foundPokemon)
-            // pokemonDetailsArray.push(pokemonDetails)
     
             let indexedPokemon =  getPokemonByName(foundPokemon.name)  
             
             indexedPokemon.details = pokemonDetails
             pokemonListHasChanges = true;
         }
-
     }
 
+    // Om det har skett en förändring av Pokémon-objektet, uppdatera localStorage
     if(pokemonListHasChanges)
     {
       let stringToSave = JSON.stringify(pokemonArray)
       localStorage.setItem(LS_KEY, stringToSave)
     }
 
-
-
     return foundPokemonsArray
 }
 
 
 
+// Funktion för att finna en Pokémon i lokal array genom att ange dens namn.
+// Används i eventlyssnare för att smidigare hämta rätt Pokémon.
 function getPokemonByName(pokemonName) {
-
     return pokemonArray.find(indexedPokemon => indexedPokemon.name == pokemonName)
-
 }
 
 
-  
-
-
-
-
-
-
-
-  
-  
-  // FUNKTION
+   
+// FUNKTION
 // 1. Tabellgenerator som renderar sökt Pokémons information till sidan
 // 2. Gör varje genererad tabellrad klickbar mha "makeNewRowesClickable()"-funktionen.
 function renderPokemonDetails(pokemonDetails) {
@@ -131,29 +128,18 @@ function renderPokemonDetails(pokemonDetails) {
   // SKAPAR POKÉMONTYP OCH LÄGGER IN I TABELLRAD
     let newTableDataType = document.createElement('td')
     newTableDataType.className = `${pokemonDetails.name} td td-class`
-
-
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
-        
-        newTableDataType.innerText = 'Type:  ' + capitalizeFirstLetter(pokemonDetails.types[0].type.name)
-        // newTableDataType.className = ` ${data.name}`
-        // newTableDataType.innerText = 'Type:  ' + data.types
-        
-        
-        
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+    newTableDataType.innerText = 'Type:  ' + capitalizeFirstLetter(pokemonDetails.types[0].type.name)
 
     newTableRow.append(newTableDataType)
 }
 
 
 
-
+// Funktion för att göra stor bokstav på angiven sträng.
 function capitalizeFirstLetter(string) {
     return string[0].toUpperCase() + string.slice(1);
 }
+
 
 
 function closeOverlayAndHideButtons() {
@@ -222,28 +208,10 @@ function saveDataToLocalStorage() {
     
     let arrayFromLocalStorage = JSON.parse(stringFromLocalStorage)
 
-
-  // let existsInLocalStorage = arrayFromLocalStorage.forEach(element => {
-  //   if (data.name == element.name) {
-  //     return true
-  //   }
-  //   else {
-  //     return false
-  //   }
-  // })
-
-  // console.log(existsInLocalStorage)
-
-  // if (existsInLocalStorage == false) {
-
     arrayFromLocalStorage.push( savedData )
   
     let stringToSave = JSON.stringify(arrayFromLocalStorage)
     localStorage.setItem(LS_KEY, stringToSave)
-
-  // }
-
-
 }
 
 function sendToWhatSlot() {
@@ -256,10 +224,9 @@ function sendToWhatSlot() {
 }
 
 
-
+// Funktion för att ta bort Pokémons från laguppställningen.
+// Används av eventlyssnare på "Remove from team!"-knappen i overlay.
 function removeTargetPokemon(targetPokemon) {
-    console.log(targetPokemon)
-    console.log('3')
 
     targetPokemon.src = "/pictures/chosen-pokemon--blank-placeholder.png"
     
@@ -267,22 +234,24 @@ function removeTargetPokemon(targetPokemon) {
           targetPokemon.nextElementSibling.innerText = '#1:'
           slotsCount--
           chosenCountPart.innerText = slotsCount
-          console.log('4')
         }
         
         else if (targetPokemon.alt == "Second chosen Pokémon") {
           targetPokemon.nextElementSibling.innerText = '#2:'
           slotsCount--
           chosenCountPart.innerText = slotsCount
-          console.log('5')
           
         } else if (targetPokemon.alt == "Third chosen Pokémon") {
           targetPokemon.nextElementSibling.innerText = '#3:'
           slotsCount--
           chosenCountPart.innerText = slotsCount
-          console.log('6')
         }
-        console.log('7')
+        
+        else {
+            // Om en reserve-pokémon tas bort
+            targetPokemon.parentElement.remove()
+            
+        }
 }
 
 
@@ -314,10 +283,6 @@ function navigateTo(section) {
         state.currentView = 'primary'
     }   
 
-    // else if (section != 'primary') {
-
-    // }   
-
     else if (section == 'reserves') {
         
         sectionPrimary.style.display = 'flex'
@@ -343,9 +308,6 @@ function navigateTo(section) {
         state.currentView = 'reserves'
     }
 
-    // else if (section != 'reserves') {
-
-    // }
     else if (section == 'team') {
         sectionYourTeam.style.display = 'flex'
         sectionPrimary.style.display = 'none'
@@ -357,18 +319,29 @@ function navigateTo(section) {
         state.currentView = 'team'
     }   
 
-    // else if (section != 'team') {
-    //     sectionYourTeam.style.display = 'none'
-    // }   
-
     else if (section == 'overlay') {
         overlaySection.style.display = 'flex'
         overlayMessage.style.visibility = 'hidden'
 
         state.currentView = 'overlay'
     }   
-
-    // else { overlaySection.style.display = 'none' }
 }
 
 
+
+function areAllSlotsAssigned() {
+    let isFirstSlotEmpty = firstPrimaryChosenDiv.innerText.includes('#')
+    let isSecondSlotEmpty = secondPrimaryChosenDiv.innerText.includes('#')
+    let isThirdSlotEmpty = thirdPrimaryChosenDiv.innerText.includes('#')
+   
+    if ( (isFirstSlotEmpty == false) && (isSecondSlotEmpty == false) && (isThirdSlotEmpty == false) ) 
+    {
+      navButtonReserveTeam.style.filter = 'unset'
+      state.currentView = 'reserves'
+      return true
+    } 
+    else {
+      state.currentView = 'primary'
+      return false
+    }
+  }

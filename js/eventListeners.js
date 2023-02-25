@@ -1,22 +1,4 @@
-/**** EVENTLYSSNARE FÖR NAVIGERING ************************************/
 
-
-function areAllSlotsAssigned() {
-  let isFirstSlotEmpty = firstPrimaryChosenDiv.innerText.includes('#')
-  let isSecondSlotEmpty = secondPrimaryChosenDiv.innerText.includes('#')
-  let isThirdSlotEmpty = thirdPrimaryChosenDiv.innerText.includes('#')
- 
-  if ( (isFirstSlotEmpty == false) && (isSecondSlotEmpty == false) && (isThirdSlotEmpty == false) ) 
-  {
-    navButtonReserveTeam.style.filter = 'unset'
-    state.currentView = 'reserves'
-    return true
-  } 
-  else {
-    state.currentView = 'primary'
-    return false
-  }
-}
 
 
 
@@ -93,10 +75,6 @@ newTableBody.addEventListener('click', async(event) => {
     //     renderToOverlay(savedData)
     //     console.log('sparad data använd')
     // }
-
-
-
-    
 
     renderToOverlay( getPokemonByName(targetClass).details )
 
@@ -399,14 +377,6 @@ navButtonBackToSearch.addEventListener('click', () => {
 })
 
 
-/**
- * Vid klick på pokemon, 
- *      1. spara 'event.target.alt' i en variabel för att skilja dem åt.
- *      2. Öppna overlay med knapp för att ta bort
- *      3. 
- * 
- */
-
 
 // Rendering av info till overlay när Pokemon klickas på i team-vyn
 let targetPokemon
@@ -452,12 +422,9 @@ allChosenPokemonDivs.forEach(item => {
 })
 
 overlayButtonRemoveFromTeam.addEventListener('click', () => {
-    // console.log(event)
-    console.log('1')
     overlayButtonRemoveFromTeam.style.visibility = 'hidden'
     overlaySection.style.display = 'none'
     removeTargetPokemon(targetPokemon)
     clearOverlay()
-    console.log('2')
     state.currentView = 'team'
 })
