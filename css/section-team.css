@@ -1,7 +1,7 @@
 body {
   position: relative;
   min-width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 
@@ -37,6 +37,7 @@ body {
     background-color: var(--color-pokemon-blue);
     margin-top: 1em;
     transition: 0.2s;
+    margin-top: 5em;
 }
 
 .reorder-team:hover {
@@ -61,6 +62,8 @@ body {
     max-width: 90%;
     position: relative;
     padding-top: 4em;
+    z-index: 10;
+    background-color: white;
 }
 
 .container-reorder-before, .container-reorder-after {
@@ -115,3 +118,4 @@ body {
     transform: scale(110%);
     background-color: var(--color-pokemon-red);
   }
+

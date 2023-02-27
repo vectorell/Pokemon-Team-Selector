@@ -131,7 +131,7 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
     
     if (state.currentView == 'primary') {
         
-        console.log('test3')
+        // console.log('test3')
 
         // Om slot 1 inte är upptaget, välj slot 1
         if ((firstPrimaryChosenName.innerText.includes('#1:')) == true ) {
@@ -200,7 +200,7 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
 
         
     else if (state.currentView == 'reserves') {
-        console.log('NU KÖRS RESERVES!')
+        // console.log('NU KÖRS RESERVES!')
         
         // Om angivit custom namn på pokemonen, låt det vara pokemonens namn
         if (overlayInputfieldCustomName.value != '') { pokemonName = overlayInputfieldCustomName.value }
@@ -213,13 +213,13 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
         newDivChosenReservePokemon.addEventListener('click', (event) => {
 
             targetPokemon = event.target
-            console.log('klick på any')
+            // console.log('klick på any')
             targetToRemove = event.target.alt
-            console.log(event)
+            // console.log(event)
             // console.log(target)
     
             let targetName = (event.target.nextElementSibling.innerText).toLowerCase()
-            console.log(targetName)
+            // console.log(targetName)
 
             event.target.nextElementSibling.dataset.originalName = pokemonDetails.name
     
@@ -230,7 +230,7 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
             Object.assign(newPokemonDetails, pokemonDetails)
     
             newPokemonDetails.name = capitalizeFirstLetter(pokemonName) 
-            console.log(newPokemonDetails)
+            // console.log(newPokemonDetails)
     
 
                 overlayContainerImagePokemon.innerHTML = ''
@@ -286,13 +286,13 @@ allChosenPokemonDivs.forEach(item => {
     item.addEventListener('click', (event) => {
 
         targetPokemon = event.target
-        console.log('klick på any')
+        // console.log('klick på any')
         targetToRemove = event.target.alt
-        console.log(event)
+        // console.log(event)
         // console.log(target)
 
         let targetName = (event.target.nextElementSibling.innerText).toLowerCase()
-        console.log(targetName)
+        // console.log(targetName)
 
         // Kontroll, finns det någon Pokémon att rendera?
         if (targetName.includes('#')) {
@@ -306,7 +306,7 @@ allChosenPokemonDivs.forEach(item => {
             Object.assign(newPokemonDetails, pokemonDetails)
     
             newPokemonDetails.name = capitalizeFirstLetter(targetName) 
-            console.log(newPokemonDetails)
+            // console.log(newPokemonDetails)
     
                 overlayContainerImagePokemon.innerHTML = ''
                 renderToOverlay(newPokemonDetails)
@@ -344,8 +344,8 @@ buttonReorderTeamSection.addEventListener('click', () => {
         buttonReorderTeamSection.style.background = "var(--color-pokemon-blue)"
         // 1. Samla information om vilka Pokémons som finns i valda primary, spara i en array
     let selectedPrimaryPokemonArray = [ state.savedFirstChosenPrimary, state.savedSecondChosenPrimary, state.savedThirdChosenPrimary ]
-    console.log('selectedPrimaryPokemonArray')
-    console.log(selectedPrimaryPokemonArray)
+    // console.log('selectedPrimaryPokemonArray')
+    // console.log(selectedPrimaryPokemonArray)
 
     // 2. Displaya en 'div' där denna array kan renderas till 
     divReorderTeamSection.style.visibility = 'visible'
