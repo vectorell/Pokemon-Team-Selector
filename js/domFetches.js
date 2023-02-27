@@ -50,7 +50,8 @@
 
     // slotsParagraph
     const slotsParagraph = document.querySelector('.paragraph-chosen-pokemon')
-      
+    
+    let sectionTeamPlaceholderText = document.querySelector('.section-team-placeholder-text')
 
 
     // ALLA SLOTS

@@ -9,7 +9,13 @@ navButtonReserveTeam.addEventListener('click', () => {
 navButtonBackToSearch.addEventListener('click', () => { navigateTo('primary') })
 
 // Gå från reserves till 'Your Team'
-navButtonYourTeam.addEventListener('click', () => { navigateTo('team') })
+navButtonYourTeam.addEventListener('click', () => { 
+    areAllSlotsAssigned()
+    if (areAllSlotsAssigned() == true) {
+        sectionTeamPlaceholderText.innerText = 'Click on a Pokémon below to display its info, or to remove it from your team.'
+    }
+    navigateTo('team')
+ })
 
 // Gå från 'Your Team tillbaka reserves
 navButtonBackToReserveTeam.addEventListener('click', () => { navigateTo('reserves') })
@@ -51,7 +57,7 @@ newTableBody.addEventListener('click', async(event) => {
 // EVENTLYSSNARE - INHÄMTNING AV DATA VID MUSKLICK PÅ "Go!"-KNAPPEN > Rendering till sida
 searchButton.addEventListener('click', async() => {
     
-    searchPlaceholderText.style.display = 'none'
+    // searchPlaceholderText.style.display = 'none'
     let submittedData = searchInputfield.value
     
     if (submittedData != '') {
@@ -324,8 +330,17 @@ overlayButtonRemoveFromTeam.addEventListener('click', () => {
     overlaySection.style.display = 'none'
     removeTargetPokemon(targetPokemon)
     clearOverlay()
+    areAllSlotsAssigned()
+    if (areAllSlotsAssigned() == false) {
+        sectionTeamPlaceholderText.innerText = 'Your team is not complete! Go back and add Pokémons!'
+    }
     state.currentView = 'team'
 })
+
+
+
+
+
 
 
 // Reorder-team-knapp
@@ -334,6 +349,11 @@ buttonReorderTeamSection.addEventListener('click', () => {
     let isFirstPrimarySlotEmpty = (firstPrimaryChosenName.innerText.includes('#'))
     let isSecondPrimarySlotEmpty = (secondPrimaryChosenName.innerText.includes('#'))
     let isThirdPrimarySlotEmpty = (thirdPrimaryChosenName.innerText.includes('#'))
+    
+    // Om någon slot är tom
+    if ( isFirstPrimarySlotEmpty || isSecondPrimarySlotEmpty || isThirdPrimarySlotEmpty ) {
+        buttonReorderTeamSection.style.background = "gray"
+    }
 
     // Om någon slot är tom
     if ( isFirstPrimarySlotEmpty || isSecondPrimarySlotEmpty || isThirdPrimarySlotEmpty ) {
