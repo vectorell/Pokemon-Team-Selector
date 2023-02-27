@@ -1,7 +1,10 @@
 let state = {
     currentView: 'primary',
     isPrimarySelectedDeletable: false,
-    selectedPokemon: ''
+    selectedPokemon: '',
+    savedFirstChosenPrimary: '',
+    savedSecondChosenPrimary: '',
+    savedThirdChosenPrimary: ''
 }
 
 
@@ -93,6 +96,28 @@ let slotsCount = 0
     const thirdPrimaryChosenName = document.querySelector('.third-chosen-primary-pokemon-name')
 
 
+    // RE-ORDER KNAPP
+    const buttonReorderTeamSection = document.querySelector('.reorder-team')
+
+    // RE-ORDER DIV
+    const divReorderTeamSection = document.querySelector('.reorder-div')
+
+    // RE-ORDER SUB-DIVS
+    const divReorderBeforeInTeamSection = document.querySelector('.container-reorder-before')
+
+        const divReorderBeforeFirstInTeamSection = document.querySelector('.container-reorder-before-first')
+            const imageReorderBeforeFirst = document.querySelector('.image-reorder-before-first')
+            const pokemonNameReorderBeforeFirst = document.querySelector('.pokemon-name-reorder-before-first')
+
+        const divReorderBeforeSecondInTeamSection = document.querySelector('.container-reorder-before-second')
+            const imageReorderBeforeSecond = document.querySelector('.image-reorder-before-second')
+            const pokemonNameReorderBeforeSecond = document.querySelector('.pokemon-name-reorder-before-second')
+        
+        const divReorderBeforeThirdInTeamSection = document.querySelector('.container-reorder-before-third')
+            const imageReorderBeforeThird = document.querySelector('.image-reorder-before-third')
+            const pokemonNameReorderBeforeThird = document.querySelector('.pokemon-name-reorder-before-third')
+
+    const confirmButtonReorder = document.querySelector('.confirm-button')
   
   // ------------DOM-ELEMENT I SEKTION "OVERLAY" -------------------------
     const overlaySection = document.querySelector('.section__info')

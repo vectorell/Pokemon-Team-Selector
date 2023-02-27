@@ -83,3 +83,59 @@ body {
   font-weight: 600;
 }
 
+
+.nav-buttons-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .nav-buttons-container > button {
+    width: 45%;
+  }
+
+
+
+
+
+@media (max-width: 450px) {
+    .container__input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1em;
+    }
+    
+    .td-class {
+        display: none;
+    }
+
+    .paragraph-search-info {
+        padding: 0.5em;
+        text-align: center;
+    }
+
+    .button-reserve-team > .picture_chosen {
+        content: url("/pictures/buttons/buttons-for-narrow-screens/button-to-reserves-28px.png");
+    }
+
+    .button-back-to-reserve-team {
+        content: url("/pictures/buttons/buttons-for-narrow-screens/button-previous-32px.png")
+    }
+
+    .nav-buttons-container {
+        flex-direction: column;
+        width: 90%;
+    }
+    
+    .nav-buttons-container > button {
+        width: unset;
+    }
+
+    .container__chosen-primary-pokemons {
+        flex-direction: column;
+    }
+    
+    .container__chosen-reserve-pokemons {
+        flex-direction: column;
+    }
+}

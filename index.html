@@ -102,73 +102,26 @@
   
   
 
-  <!-- SECTION RESERVE TEAM --------------------------------------------------->
+<!-- SECTION RESERVE TEAM --------------------------------------------------->
 
-  <section class="section__main display-reserves-section" style="display:none;">
+<section class="section__main display-reserves-section" style="display:none;">
     
-    <div class="container__page-header">
-        <img class="page-header display-primary-section" src="pictures/titles/title-reserve-team-28px.png" alt="Reserve Team">
-    </div>
-    
-    <div class="search__container">
-        <p class="paragraph-search-info"> Search for the Pokémons you want to add to your <em><strong>reserves</strong></em>. </p>
-
-        <div class="container__input">
-            <input type="text" class="input-reserve-pokemon-search">
-            <button type="submit" class="button-search-submit"> Go! </button>
-        </div>
-
-    </div>
-    
-    <div class="results__container-reserve">
-        <p class="search-results-reserve"> Search results: </p>
-        <hr class="divider">
-        <h3 class="section-placeholder-text"> Search for Pokémons to add to your reserves. <br> You can add how many as you desire. </h3>
-
-  <!-- <section class="section__main display-reserves-section"  style="display:none;">
-    
-    <div class="container__page-header">
-      <img class="page-header" src="pictures/titles/title-reserve-team-28px.png" alt="Reserve Team">
-    </div>
-    
-    <div class="search__container">
-      <p class="paragraph-search-info"> Search for the Pokémons you want to add to your <em><strong>reserves</strong></em>. </p>
-      <div class="container__input">
-        <input type="text" class="input-pokemon-search">
-        <button type="submit" class="button-search-submit"> Go! </button>
-      </div>
-    </div>
-    
-    <div class="results__container">
-      <p class="search-results"> Search results: </p>
-      <hr class="divider"> -->
-
-
-    </div>
-
-
-
-  <!-- FOOTER FÖR RESERVES-SECTION ------------------------------------------------------>
-    <footer>
-
- 
-
     <div class="nav-buttons-container">
-
-      <!-- Knapp för att gå tillbaka till search-->
-      <button class="button-bottom-nav button-search-pokemons"> 
-      <img class="picture_chosen" src="pictures/buttons/button-small-to-search-26px.png" alt="Search Pokémons">
-      </button>
-  
-      <!-- Knapp för att gå till "Your Team"-->
-      <button class="button-bottom-nav button-your-team"> 
-      <img class="picture_chosen" src="pictures/buttons/button-small-your-team-26px.png" alt="To your team">
-      </button>
-
+        
+        <!-- Knapp för att gå tillbaka till search-->
+        <button class="button-bottom-nav button-search-pokemons"> 
+            <img class="picture_chosen" src="pictures/buttons/button-small-to-search-26px.png" alt="Search Pokémons">
+        </button>
+        
+        <!-- Knapp för att gå till "Your Team"-->
+        <button class="button-bottom-nav button-your-team"> 
+            <img class="picture_chosen" src="pictures/buttons/button-small-your-team-26px.png" alt="To your team">
+        </button>
+        
     </div>
-  </footer>
-</section>
 
+</section>
+    
 
 
 
@@ -183,6 +136,53 @@
     
     <!-- MAIN MESSAGE -->
     <h3 class="section-placeholder-text"> Click on a Pokémon below to display its info, or to remove it from your team. </h3>
+
+    <button class="reorder-team">
+        Reorder primary Pokémons
+    </button>
+
+    <div class="reorder-div" style="visibility:hidden">
+
+        <p> To change order, click on the Pokémons below in the order that you want them in your team. </p>
+        <p> Your current team order: </p>
+        <div class="container-reorder-before">
+            <div class="container-reorder-before-first">
+                <img src="" alt="" class="image-reorder-before-first">
+                <p class="pokemon-name-reorder-before-first">  </p>
+            </div>
+
+            <div class="container-reorder-before-second">
+                <img src="" alt="" class="image-reorder-before-second">
+                <p class="pokemon-name-reorder-before-second">  </p>
+            </div>
+
+            <div class="container-reorder-before-third">
+                <img src="" alt="" class="image-reorder-before-third">
+                <p class="pokemon-name-reorder-before-third">  </p>
+            </div>
+
+
+            
+        </div>
+        <button class="confirm-button"> Confirm </button>
+        
+
+        <!-- <div class="container-reorder-after">
+            <div class="container-reorder-after-first">
+                <img src="" alt="" class="image-reorder-after-first">
+                <p class="pokemon-name-reorder-after-first">  </p>
+            </div>
+            <div class="container-reorder-after-second">
+                <img src="" alt="" class="image-reorder-after-second">
+                <p class="pokemon-name-reorder-after-second">  </p>
+            </div>
+            <div class="container-reorder-after-third">
+                <img src="" alt="" class="image-reorder-after-third">
+                <p class="pokemon-name-reorder-after-third">  </p>
+            </div>
+        </div> -->
+   
+    </div>
 
     <!-- FOOTER FÖR TEAM-SECTION ----------------------------------------------------------->
     <footer>

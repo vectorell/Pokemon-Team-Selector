@@ -26,3 +26,68 @@ body {
 
 
 
+.reorder-team {
+    font-size: 1.2em;
+    padding: 1em;
+    border: none;
+    border-radius: 0.5em;
+    color: white;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    background-color: var(--color-pokemon-blue);
+    margin-top: 1em;
+    transition: 0.2s;
+}
+
+.reorder-team:hover {
+    transition: 0.2s;
+    transform: scale(103%);
+}
+
+.reorder-div {
+    border: 1px solid rgb(142, 142, 142);
+    border-radius: 0.5em;
+    padding:1em;
+    margin-top: 2em;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* min-width: 30em; */
+    /* max-width: 50em; */
+    height: 20em;
+    row-gap: 1em;
+    column-gap: 0.5em;
+    max-width: 90%;
+}
+
+.container-reorder-before, .container-reorder-after {
+    /* border: 1px solid rgb(142, 142, 142); */
+    /* height: 40%; */
+    display: flex;
+    justify-content: space-evenly;
+    height: 50%;
+}
+
+.container-reorder-before > div, .container-reorder-after > div {
+    border: 1px solid rgba(187, 187, 187, 0.6);
+    width: 33%;
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: var(--shadow);
+    background-color: #efefef8b;
+}
+
+.confirm-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2em;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.5em;
+    box-shadow: var(--shadow);
+    background-color: var(--color-pokemon-green);
+    color: white;
+}

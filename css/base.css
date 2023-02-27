@@ -70,6 +70,7 @@ p {
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.685);
   color: white;
   width: 100%;
@@ -80,6 +81,8 @@ p {
 .container__chosen-primary-pokemons {
   display: flex;
   justify-content: space-around;
+  max-width: 50em;
+  min-width: 30em;
 }
 
 .chosen-primary-pokemon {
@@ -176,6 +179,12 @@ p {
 
 .container__input {
     width: 100%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    /* align-items: center; */
+    /* align-self: center; */
+    /* justify-self: center; */
 }
 
 .button-search-submit, .button-reserve-search-submit {
@@ -213,14 +222,29 @@ p {
   padding-right: 1em;
 }
 
+
+.container__reserve-pokemon-slots {
+    min-height: 10em;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.685);
+    color: white;
+    margin-top: 1em;
+    width: 100%;
+}
+
 @media (min-width: 800px) {
 
   body {
     display: flex;
     align-items: center;
+    background-color: #d6d6d6;
   }
   .section__main {
-    max-width: 50em;
+    max-width: 80em;
+    width: 50em;
+    background-color: white;
+    border-radius: 1em;
+    min-height: 80vh;
   }
 
   .container__chosen__pokemons {
@@ -233,6 +257,16 @@ p {
   .button-bottom-nav {
     max-width: 50em;
   }
+
+  .container__primary-pokemon-slots {
+    width: 50em;
+  }
+
+  .container__reserve-pokemon-slots {
+    width: 50em;
+    border-radius: 0em 0em 1em 1em;
+}
+
 }
 
 .results-info {
@@ -240,3 +274,4 @@ p {
     margin-top: 2em;
     color:#727272
 }
+

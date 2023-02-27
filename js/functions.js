@@ -191,6 +191,7 @@ function renderToOverlay(pokemonDetails) {
 
     // Här skapas en bild som sedan renderas
     let overlayImagePokemon = document.createElement('img')
+    overlayImagePokemon.className = pokemonDetails.name
     overlayImagePokemon.src = pokemonDetails.sprites.front_default
     overlayImagePokemon.alt = pokemonDetails.name
     overlayContainerImagePokemon.prepend(overlayImagePokemon)

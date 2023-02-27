@@ -12,14 +12,7 @@ body {
   text-align: center;
 } */
 
-.nav-buttons-container {
-  display: flex;
-  justify-content: space-between;
-}
 
-.nav-buttons-container > button {
-  width: 45%;
-}
 
 
 /* 
@@ -89,11 +82,11 @@ body {
     padding-top: 0.5em;
 }
 
-.container__reserve-pokemon-slots {
+/* .container__reserve-pokemon-slots {
     min-height: 10em;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.685);
     color: white;
     margin-top: 1em;
     width: 100%;
-}
+} */
