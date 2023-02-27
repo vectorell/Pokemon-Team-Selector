@@ -61,6 +61,7 @@ p {
   height: 80vh;
   height: fit-content;
   padding-bottom: 2em;
+  box-shadow: var(--shadow);
 }
 
 

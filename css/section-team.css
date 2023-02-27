@@ -55,10 +55,12 @@ body {
     justify-content: space-evenly;
     /* min-width: 30em; */
     /* max-width: 50em; */
-    height: 20em;
+    height: 24em;
     row-gap: 1em;
     column-gap: 0.5em;
     max-width: 90%;
+    position: relative;
+    padding-top: 4em;
 }
 
 .container-reorder-before, .container-reorder-after {
@@ -91,3 +93,25 @@ body {
     background-color: var(--color-pokemon-green);
     color: white;
 }
+
+.button-close-reorder {
+    background-color: var(--color-pokemon-darkred);
+    border: 1px solid rgba(255, 255, 255, 0.395);
+    color: white;
+    font-weight: 600;
+    border-radius: 2em;;
+    font-size: 1.5em;
+    width: 1.5em;
+    height: 1.5em;
+    position:absolute;
+    left: 0.5em;
+    top: 0.5em;
+    transition: 0.2s;
+  }
+  
+  .button-close-reorder:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    transform: scale(110%);
+    background-color: var(--color-pokemon-red);
+  }

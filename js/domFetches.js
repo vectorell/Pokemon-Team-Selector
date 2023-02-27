@@ -1,18 +1,3 @@
-let state = {
-    currentView: 'primary',
-    isPrimarySelectedDeletable: false,
-    selectedPokemon: '',
-    savedFirstChosenPrimary: '',
-    savedSecondChosenPrimary: '',
-    savedThirdChosenPrimary: ''
-}
-
-
-
-// behövs för slots räkneverk
-let slotsCount = 0
-
-
 /************** 1: INHÄMTNING AV ALLA DOM-ELEMENT*****************************/
 
   // ------------"UNIVERSIALA DOM-ELEMENT" ---------------------------
@@ -102,6 +87,9 @@ let slotsCount = 0
     // RE-ORDER DIV
     const divReorderTeamSection = document.querySelector('.reorder-div')
 
+    // RE-ORDER KRYSSKNAPP
+    let buttonCloseReorderContainer = document.querySelector('.button-close-reorder')    
+
     // RE-ORDER SUB-DIVS
     const divReorderBeforeInTeamSection = document.querySelector('.container-reorder-before')
 
@@ -150,8 +138,6 @@ let slotsCount = 0
 
 
 /********* för DOM-rendering ************************************/
-
-
 let newTable = document.createElement('table')
 newTable.className = 'results-table'
 
@@ -161,29 +147,31 @@ newTable.append(newTableBody)
 
 
 
-
-
-
-
 /*************** DETTA ANVÄNDS FÖR START ****************' */
 
-  sectionPrimary.style.display = 'flex'
-//   sectionReserves.style.display = 'flex'
-
-
-
+sectionPrimary.style.display = 'flex'
 
 let savedData
+let getAllPokemonsUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0'
+let options = {}
+let data
+let LS_KEY = 'pokemons'
 
-  let getAllPokemonsUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0'
-  let options = {}
-  let data
-  let LS_KEY = 'pokemons'
-  
-  
-  let errorText = document.createElement('h3')
-  errorText.className = 'errortext'
-  errorText.innerText = 'No such Pokémon found!'
-  errorText.style.display = 'none'
-  resultsContainer.append(errorText)
+let errorText = document.createElement('h3')
+errorText.className = 'errortext'
+errorText.innerText = 'No such Pokémon found!'
+errorText.style.display = 'none'
+resultsContainer.append(errorText)
+
+let state = {
+  currentView: 'primary',
+  isPrimarySelectedDeletable: false,
+  selectedPokemon: '',
+  savedFirstChosenPrimary: '',
+  savedSecondChosenPrimary: '',
+  savedThirdChosenPrimary: ''
+}
+
+// behövs för slots räkneverk
+let slotsCount = 0
 

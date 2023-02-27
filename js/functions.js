@@ -1,6 +1,5 @@
+// Används för start
 let pokemonArray
-
-
 loadPokemons()
 
 
@@ -195,25 +194,8 @@ function renderToOverlay(pokemonDetails) {
     overlayImagePokemon.src = pokemonDetails.sprites.front_default
     overlayImagePokemon.alt = pokemonDetails.name
     overlayContainerImagePokemon.prepend(overlayImagePokemon)
-
-
-    // overlaySection.style.display = 'flex'
 }
 
-
-
-
-function saveDataToLocalStorage() {
-    let stringFromLocalStorage = localStorage.getItem(LS_KEY)
-    if (!stringFromLocalStorage) { stringFromLocalStorage = '[]' }
-    
-    let arrayFromLocalStorage = JSON.parse(stringFromLocalStorage)
-
-    arrayFromLocalStorage.push( savedData )
-  
-    let stringToSave = JSON.stringify(arrayFromLocalStorage)
-    localStorage.setItem(LS_KEY, stringToSave)
-}
 
 function sendToWhatSlot() {
     slotPrimaryChosenPicture.src = savedData.sprites.front_default
