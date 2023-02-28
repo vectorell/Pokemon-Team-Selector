@@ -59,6 +59,8 @@ searchButton.addEventListener('click', async() => {
     
     // searchPlaceholderText.style.display = 'none'
     let submittedData = searchInputfield.value
+
+    resultsContainer.innerHTML = ''
     
     if (submittedData != '') {
         try {
@@ -68,17 +70,29 @@ searchButton.addEventListener('click', async() => {
             pokemonsToRender.forEach( pokemon => {
                 renderPokemonDetails(pokemon.details)
             })
+
+            if (resultsContainer.innerHTML == '') {
+                errorText.innerText = 'No such Pokémon found!'
+                errorText.style.display = 'block'
+                resultsContainer.append(errorText)
+            }
+
             
         } catch (error) {
             console.log('fel!')
             errorText.innerText = 'No such Pokémon found!'
             errorText.style.display = 'block'
-        }
+            resultsContainer.append(errorText)
 
+
+        }
+        
     } else if (submittedData == '') {
         errorText.innerText = 'Please enter something..'
         errorText.style.display = 'block'
+        resultsContainer.append(errorText)
     }
+    
 })
 
 

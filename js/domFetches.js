@@ -162,7 +162,7 @@ let errorText = document.createElement('h3')
 errorText.className = 'errortext'
 errorText.innerText = 'No such Pokémon found!'
 errorText.style.display = 'none'
-resultsContainer.append(errorText)
+// resultsContainer.append(errorText)
 
 let state = {
   currentView: 'primary',
