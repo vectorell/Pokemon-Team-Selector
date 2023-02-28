@@ -296,6 +296,7 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
         
 navButtonBackToSearch.addEventListener('click', () => {
   areAllSlotsAssigned()
+  navigateTo('primary')
 })
 
 
@@ -355,8 +356,8 @@ overlayButtonRemoveFromTeam.addEventListener('click', () => {
 
 
 navButtonBackToSearchFromTeam.addEventListener('click', () => {
-    sectionMain.style.background = '#white'
     navigateTo('primary')
+    sectionMain.style.background = 'white'
 })
 
 

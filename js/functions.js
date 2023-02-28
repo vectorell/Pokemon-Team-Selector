@@ -276,7 +276,7 @@ function navigateTo(section) {
 
         pageHeader.src = "/pictures/titles/title-reserve-team-28px.png"
         pageHeader.alt = "Reserves"
-        // sectionMain.style.background = '#C2C5BB'
+        sectionMain.style.background = '#C2C5BB'
 
         chosenCountContainer.style.display = 'none'
         chosenReserveContainerText.style.display = 'flex'
