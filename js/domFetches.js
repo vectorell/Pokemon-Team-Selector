@@ -16,6 +16,8 @@
     const navButtonBackToReserveTeam = document.querySelector('.button-back-to-reserve-team')
     const navButtonYourTeam = document.querySelector('.button-your-team')
     const navButtonBackToSearch = document.querySelector('.button-search-pokemons')
+    const navButtonBackToSearchFromTeam = document.querySelector('.button-back-to-search-pokemons')
+    
 
 
 

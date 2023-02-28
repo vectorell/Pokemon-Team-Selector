@@ -219,7 +219,7 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
         }
 
         
-    else if (state.currentView == 'reserves') {
+    else if (areAllSlotsAssigned() == true) {
         // console.log('NU KÖRS RESERVES!')
         
         // Om angivit custom namn på pokemonen, låt det vara pokemonens namn
@@ -347,12 +347,17 @@ overlayButtonRemoveFromTeam.addEventListener('click', () => {
     areAllSlotsAssigned()
     if (areAllSlotsAssigned() == false) {
         sectionTeamPlaceholderText.innerText = 'Your team is not complete! Go back and add Pokémons!'
+        navButtonBackToReserveTeam.style.display = 'none'
+        navButtonBackToSearchFromTeam.style.display = 'flex'
     }
     state.currentView = 'team'
 })
 
 
-
+navButtonBackToSearchFromTeam.addEventListener('click', () => {
+    sectionMain.style.background = '#white'
+    navigateTo('primary')
+})
 
 
 
@@ -364,11 +369,6 @@ buttonReorderTeamSection.addEventListener('click', () => {
     let isSecondPrimarySlotEmpty = (secondPrimaryChosenName.innerText.includes('#'))
     let isThirdPrimarySlotEmpty = (thirdPrimaryChosenName.innerText.includes('#'))
     
-    // Om någon slot är tom
-    if ( isFirstPrimarySlotEmpty || isSecondPrimarySlotEmpty || isThirdPrimarySlotEmpty ) {
-        buttonReorderTeamSection.style.background = "gray"
-    }
-
     // Om någon slot är tom
     if ( isFirstPrimarySlotEmpty || isSecondPrimarySlotEmpty || isThirdPrimarySlotEmpty ) {
         buttonReorderTeamSection.style.background = "gray"

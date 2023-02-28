@@ -240,7 +240,7 @@ function removeTargetPokemon(targetPokemon) {
 
 function navigateTo(section) {
 
-    state.currentView = section
+    // state.currentView = section
 
     if (section == 'primary') {
         sectionPrimary.style.display = 'flex'
@@ -250,6 +250,7 @@ function navigateTo(section) {
 
         pageHeader.src = "/pictures/titles/title-primary-team-28.png"
         pageHeader.alt = "Primary team"
+        sectionMain.style.background = '#white'
 
         resultsContainer.innerHTML = ''
         searchInputfield.value = ''
@@ -275,6 +276,7 @@ function navigateTo(section) {
 
         pageHeader.src = "/pictures/titles/title-reserve-team-28px.png"
         pageHeader.alt = "Reserves"
+        // sectionMain.style.background = '#C2C5BB'
 
         chosenCountContainer.style.display = 'none'
         chosenReserveContainerText.style.display = 'flex'
@@ -298,7 +300,7 @@ function navigateTo(section) {
         overlaySection.style.display = 'none'
 
         navButtonBackToReserveTeam.style.display = 'flex'
-
+        navButtonBackToSearchFromTeam.style.display = 'none'
         state.currentView = 'team'
     }   
 
@@ -320,11 +322,12 @@ function areAllSlotsAssigned() {
     if ( (isFirstSlotEmpty == false) && (isSecondSlotEmpty == false) && (isThirdSlotEmpty == false) ) 
     {
       navButtonReserveTeam.style.filter = 'unset'
+      navigateTo('reserves')
       state.currentView = 'reserves'
       return true
     } 
     else {
-      state.currentView = 'primary'
+    //   state.currentView = 'primary'
       return false
     }
   }
