@@ -84,7 +84,7 @@ async function searchPokemon(searchInput) {
     if(pokemonListHasChanges)
     {
       let stringToSave = JSON.stringify(pokemonArray)
-      localStorage.setItem(LS_KEY, stringToSave)
+      localStorage.setItem(LS_KEY_DETAILS, stringToSave)
     }
 
     return foundPokemonsArray

@@ -63,11 +63,11 @@ searchButton.addEventListener('click', async() => {
     resultsContainer.innerHTML = ''
     
     if (submittedData != '') {
-        try {
+        // try {
             newTableBody.innerHTML = ''
             errorText.style.display = 'none'
             let pokemonsToRender = await searchPokemon(submittedData)
-            pokemonsToRender.forEach( pokemon => {
+            await pokemonsToRender.forEach( pokemon => {
                 renderPokemonDetails(pokemon.details)
             })
 
@@ -78,14 +78,15 @@ searchButton.addEventListener('click', async() => {
             }
 
             
-        } catch (error) {
-            console.log('fel!')
-            errorText.innerText = 'No such Pokémon found!'
-            errorText.style.display = 'block'
-            resultsContainer.append(errorText)
+        // } 
+        // catch (error) {
+        //     console.log('fel!')
+        //     errorText.innerText = 'No such Pokémon found!'
+        //     errorText.style.display = 'block'
+        //     resultsContainer.append(errorText)
 
 
-        }
+        // }
         
     } else if (submittedData == '') {
         errorText.innerText = 'Please enter something..'

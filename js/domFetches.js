@@ -159,6 +159,7 @@ let getAllPokemonsUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0
 let options = {}
 let data
 let LS_KEY = 'pokemons'
+let LS_KEY_DETAILS = 'pokemon-details'
 
 let errorText = document.createElement('h3')
 errorText.className = 'errortext'
