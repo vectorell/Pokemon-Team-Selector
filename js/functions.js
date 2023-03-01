@@ -37,6 +37,15 @@ async function loadPokemons () {
 async function getPokemonDetails(pokemon) {
     let response = await fetch(pokemon.url)
     let data = await response.json()
+    delete data.moves
+    delete data.game_indices
+    delete data.stats
+    delete data.height
+    delete data.held_items
+    delete data.order
+    delete data.past_types
+    delete data.location_area_encounters
+    delete data.weight
     return data
 }
 
@@ -84,7 +93,7 @@ async function searchPokemon(searchInput) {
     if(pokemonListHasChanges)
     {
       let stringToSave = JSON.stringify(pokemonArray)
-      localStorage.setItem(LS_KEY_DETAILS, stringToSave)
+      localStorage.setItem(LS_KEY, stringToSave)
     }
 
     return foundPokemonsArray
