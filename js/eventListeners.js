@@ -209,7 +209,7 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
             event.target.nextElementSibling.dataset.originalName = pokemonDetails.name
             state.selectedPokemon = event.target.nextElementSibling.dataset.originalName
     
-            pokemonDetails = getPokemonByName(state.selectedPokemon).details
+            pokemonDetails = (getPokemonByName(state.selectedPokemon).details)
             let newPokemonDetails = {}
             Object.assign(newPokemonDetails, pokemonDetails)
     
