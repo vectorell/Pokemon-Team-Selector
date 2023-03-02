@@ -1,8 +1,7 @@
 // Gå från startsida (primary) till reserve-team
 navButtonReserveTeam.addEventListener('click', () => {
-    if ( areAllSlotsAssigned() == true ) {
-        navigateTo('reserves')
-    } else { /** meddela användare här */ }
+    if ( areAllSlotsAssigned() == true ) { navigateTo('reserves')} 
+    else { /** meddela användare här */ }
 })
 
 // Gå från reserves tillbaka till första sidan
@@ -12,14 +11,12 @@ navButtonBackToSearch.addEventListener('click', () => { navigateTo('primary') })
 navButtonYourTeam.addEventListener('click', () => { 
     areAllSlotsAssigned()
     if (areAllSlotsAssigned() == true) {
-        sectionTeamPlaceholderText.innerText = 'Click on a Pokémon below to display its info, or to remove it from your team.'
-    }
+        sectionTeamPlaceholderText.innerText = 'Click on a Pokémon below to display its info, or to remove it from your team.'}
     navigateTo('team')
  })
 
 // Gå från 'Your Team tillbaka reserves
 navButtonBackToReserveTeam.addEventListener('click', () => { navigateTo('reserves') })
-
 
 // Kryssknapp i overlay
 overlayButtonClose.addEventListener('click', () => {
@@ -43,57 +40,39 @@ newTableBody.addEventListener('click', async(event) => {
     let splitUpClasses = await classString.split(' ')
     targetClass = await splitUpClasses[0]
     state.selectedPokemon = targetClass
-
     try {
         renderToOverlay( getPokemonByName(targetClass).details )
         // lägger till "Add to team!"-knapp
         overlayButtonAddToTeam.style.display = 'flex'
         navigateTo('overlay')
-        
     } catch (error) {  }    
 })
 
 
 // EVENTLYSSNARE - INHÄMTNING AV DATA VID MUSKLICK PÅ "Go!"-KNAPPEN > Rendering till sida
 searchButton.addEventListener('click', async() => {
+    resultsContainer.innerHTML = ''
     
     // searchPlaceholderText.style.display = 'none'
     let submittedData = searchInputfield.value
-
-    resultsContainer.innerHTML = ''
     
     if (submittedData != '') {
-        // try {
-            newTableBody.innerHTML = ''
-            errorText.style.display = 'none'
-            let pokemonsToRender = await searchPokemon(submittedData)
-            await pokemonsToRender.forEach( pokemon => {
-                renderPokemonDetails(pokemon.details)
-            })
-
-            if (resultsContainer.innerHTML == '') {
-                errorText.innerText = 'No such Pokémon found!'
-                errorText.style.display = 'block'
-                resultsContainer.append(errorText)
-            }
-
-            
-        // } 
-        // catch (error) {
-        //     console.log('fel!')
-        //     errorText.innerText = 'No such Pokémon found!'
-        //     errorText.style.display = 'block'
-        //     resultsContainer.append(errorText)
-
-
-        // }
-        
+        newTableBody.innerHTML = ''
+        errorText.style.display = 'none'
+        let pokemonsToRender = await searchPokemon(submittedData)
+        await pokemonsToRender.forEach( pokemon => {
+            renderPokemonDetails(pokemon.details)
+        })
+        if (resultsContainer.innerHTML == '') {
+            errorText.innerText = 'No such Pokémon found!'
+            errorText.style.display = 'block'
+            resultsContainer.append(errorText)
+        }
     } else if (submittedData == '') {
         errorText.innerText = 'Please enter something..'
         errorText.style.display = 'block'
         resultsContainer.append(errorText)
     }
-    
 })
 
 
@@ -109,8 +88,7 @@ overlayButtonAddToTeam.addEventListener('click', () => {
           return checkNames = true   
         })
         
-        // Om det finns en ledig slot
-        if (checkNames == true) {
+        if (checkNames == true) {   /** Om det finns en ledig slot */
             overlayButtonAddToTeam.style.display = 'none'
             overlayButtonAddToTeamWithName.style.display = 'flex'
             overlayInputfieldCustomName.style.display = 'flex'
@@ -118,13 +96,11 @@ overlayButtonAddToTeam.addEventListener('click', () => {
             overlayMessage.innerText = 'Custom name? If not, leave the input field empty.'
           }
       
-          // Om det INTE finns en ledig slot
-          else {
+          else {    /** Om det INTE finns en ledig slot */
               overlayMessage.innerText = 'You have already selected three primary Pokémons!'
               overlayMessage.style.visibility = 'visible'
         }
     }
-    
     else if (state.currentView = 'reserves') {
         overlayButtonAddToTeam.style.display = 'none'
         overlayButtonAddToTeamWithName.style.display = 'flex'
@@ -133,7 +109,6 @@ overlayButtonAddToTeam.addEventListener('click', () => {
         overlayMessage.innerText = 'Custom name? If not, leave the input field empty.'
     }
 })
-
 
 
 
@@ -152,8 +127,6 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
     
     if (state.currentView == 'primary') {
         
-        // console.log('test3')
-
         // Om slot 1 inte är upptaget, välj slot 1
         if ((firstPrimaryChosenName.innerText.includes('#1:')) == true ) {
 
@@ -204,9 +177,7 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
             ++slotsCount
             chosenCountPart.innerText = slotsCount
         } 
-
-        // Om alla slots är upptagna
-        else { 
+        else {  /** Om alla slots är upptagna */
             overlaySection.style.display = 'none'
             overlayButtonAddToTeamWithName.style.display = 'none'
             overlayInputfieldCustomName.style.display = 'none'
@@ -221,29 +192,21 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
 
         
     else if (areAllSlotsAssigned() == true) {
-        // console.log('NU KÖRS RESERVES!')
         
         // Om angivit custom namn på pokemonen, låt det vara pokemonens namn
         if (overlayInputfieldCustomName.value != '') { pokemonName = overlayInputfieldCustomName.value }
         
         // När vi lägger till pokemonen, så vill vi;
-        
         // 1. Skapa en div med klassnamn 'chosen__reserve-pokemon'
         let newDivChosenReservePokemon = document.createElement('div')
         newDivChosenReservePokemon.className = 'chosen__reserve-pokemon chosen-pokemon'
         newDivChosenReservePokemon.addEventListener('click', (event) => {
 
             targetPokemon = event.target
-            // console.log('klick på any')
             targetToRemove = event.target.alt
-            // console.log(event)
-            // console.log(target)
     
             let targetName = (event.target.nextElementSibling.innerText).toLowerCase()
-            // console.log(targetName)
-
             event.target.nextElementSibling.dataset.originalName = pokemonDetails.name
-    
             state.selectedPokemon = event.target.nextElementSibling.dataset.originalName
     
             pokemonDetails = getPokemonByName(state.selectedPokemon).details
@@ -251,17 +214,11 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
             Object.assign(newPokemonDetails, pokemonDetails)
     
             newPokemonDetails.name = capitalizeFirstLetter(pokemonName) 
-            // console.log(newPokemonDetails)
     
-
-                overlayContainerImagePokemon.innerHTML = ''
-                renderToOverlay(newPokemonDetails)
-    
-    
+            overlayContainerImagePokemon.innerHTML = ''
+            renderToOverlay(newPokemonDetails)
     
             overlayButtonRemoveFromTeam.style.visibility = 'visible'
-            // overlaySection.style.display = 'flex'
-    
             navigateTo('overlay')
         })
 
@@ -291,15 +248,10 @@ overlayButtonAddToTeamWithName.addEventListener('click', () => {
 
         closeOverlayAndHideButtons()
     }
-        
 })
         
         
-navButtonBackToSearch.addEventListener('click', () => {
-  areAllSlotsAssigned()
-  navigateTo('primary')
-})
-
+navButtonBackToSearch.addEventListener('click', () => { areAllSlotsAssigned(); navigateTo('primary') })
 
 // Rendering av info till overlay när Pokemon klickas på i team-vyn
 let targetPokemon
@@ -308,13 +260,9 @@ allChosenPokemonDivs.forEach(item => {
     item.addEventListener('click', (event) => {
 
         targetPokemon = event.target
-        // console.log('klick på any')
         targetToRemove = event.target.alt
-        // console.log(event)
-        // console.log(target)
 
         let targetName = (event.target.nextElementSibling.innerText).toLowerCase()
-        // console.log(targetName)
 
         // Kontroll, finns det någon Pokémon att rendera?
         if (targetName.includes('#')) {
@@ -328,10 +276,9 @@ allChosenPokemonDivs.forEach(item => {
             Object.assign(newPokemonDetails, pokemonDetails)
     
             newPokemonDetails.name = capitalizeFirstLetter(targetName) 
-            // console.log(newPokemonDetails)
-    
-                overlayContainerImagePokemon.innerHTML = ''
-                renderToOverlay(newPokemonDetails)
+            
+            overlayContainerImagePokemon.innerHTML = ''
+            renderToOverlay(newPokemonDetails)
     
             overlayButtonRemoveFromTeam.style.visibility = 'visible'
     
@@ -356,12 +303,7 @@ overlayButtonRemoveFromTeam.addEventListener('click', () => {
 })
 
 
-navButtonBackToSearchFromTeam.addEventListener('click', () => {
-    navigateTo('primary')
-    sectionMain.style.background = 'white'
-})
-
-
+navButtonBackToSearchFromTeam.addEventListener('click', () => { navigateTo('primary'); sectionMain.style.background = 'white' })
 
 
 // Reorder-team-knapp
@@ -372,114 +314,103 @@ buttonReorderTeamSection.addEventListener('click', () => {
     let isThirdPrimarySlotEmpty = (thirdPrimaryChosenName.innerText.includes('#'))
     
     // Om någon slot är tom
-    if ( isFirstPrimarySlotEmpty || isSecondPrimarySlotEmpty || isThirdPrimarySlotEmpty ) {
-        buttonReorderTeamSection.style.background = "gray"
-    }
+    if ( isFirstPrimarySlotEmpty || isSecondPrimarySlotEmpty || isThirdPrimarySlotEmpty ) 
+    { buttonReorderTeamSection.style.background = "gray" }
     
     else {
         buttonReorderTeamSection.style.background = "var(--color-pokemon-blue)"
+
         // 1. Samla information om vilka Pokémons som finns i valda primary, spara i en array
-    let selectedPrimaryPokemonArray = [ state.savedFirstChosenPrimary, state.savedSecondChosenPrimary, state.savedThirdChosenPrimary ]
-    // console.log('selectedPrimaryPokemonArray')
-    // console.log(selectedPrimaryPokemonArray)
+        let selectedPrimaryPokemonArray = [ state.savedFirstChosenPrimary, state.savedSecondChosenPrimary, state.savedThirdChosenPrimary ]
 
-    // 2. Displaya en 'div' där denna array kan renderas till 
-    divReorderTeamSection.style.visibility = 'visible'
+        // 2. Displaya en 'div' där denna array kan renderas till 
+        divReorderTeamSection.style.display = 'flex'
     
-    // Renderar/uppdaterar aktuella Pokémons till re-order-containern
-    function renderToOrder(array) {
+        // Renderar/uppdaterar aktuella Pokémons till re-order-containern
+        function renderToOrder(array) {
+            
+            imageReorderBeforeFirst.src = array[0].name.details.sprites.front_default
+            if (array[0].customName != undefined) {
+                pokemonNameReorderBeforeFirst.innerText = array[0].customName }   
+            else { pokemonNameReorderBeforeFirst.innerText = capitalizeFirstLetter(array[0].name.name) }
+            
+            imageReorderBeforeSecond.src = array[1].name.details.sprites.front_default
+            if (array[1].customName != undefined) {
+                pokemonNameReorderBeforeSecond.innerText = array[1].customName} 
+                else { pokemonNameReorderBeforeSecond.innerText = capitalizeFirstLetter(array[1].name.name) }
         
-        imageReorderBeforeFirst.src  = array[0].name.details.sprites.front_default
-        if (array[0].customName != undefined) {
-            pokemonNameReorderBeforeFirst.innerText = array[0].customName
-        }   
-        else { pokemonNameReorderBeforeFirst.innerText = capitalizeFirstLetter(array[0].name.name) }
-    
-        imageReorderBeforeSecond.src  = array[1].name.details.sprites.front_default
-        if (array[1].customName != undefined) {
-            pokemonNameReorderBeforeSecond.innerText = array[1].customName
-        } else { pokemonNameReorderBeforeSecond.innerText = capitalizeFirstLetter(array[1].name.name) }
-    
-        imageReorderBeforeThird.src  = array[2].name.details.sprites.front_default
-        if (array[2].customName != undefined) {
-            pokemonNameReorderBeforeThird.innerText = array[2].customName
-        } else { pokemonNameReorderBeforeThird.innerText = capitalizeFirstLetter(array[2].name.name) }
-    }
-
-    renderToOrder(selectedPrimaryPokemonArray)
-
-    // Vid klick på första slotten i reorder-container, flytta den ett hack
-    divReorderBeforeFirstInTeamSection.addEventListener('click', () => {
-        let selectedPokemon = selectedPrimaryPokemonArray.slice(0, 1)
+            imageReorderBeforeThird.src = array[2].name.details.sprites.front_default
+            if (array[2].customName != undefined) {
+                pokemonNameReorderBeforeThird.innerText = array[2].customName} 
+                else { pokemonNameReorderBeforeThird.innerText = capitalizeFirstLetter(array[2].name.name) }
+        }
         
-        selectedPrimaryPokemonArray.splice(2, 0, selectedPokemon[0])
-        selectedPrimaryPokemonArray.splice(0, 1)
-        
-        state.savedFirstChosenPrimary = selectedPrimaryPokemonArray[0]
-        state.savedSecondChosenPrimary = selectedPrimaryPokemonArray[1]
-        state.savedThirdChosenPrimary = selectedPrimaryPokemonArray[2]
         renderToOrder(selectedPrimaryPokemonArray)
-    })
-    
-    // Vid klick på andra slotten i reorder-container, flytta den ett hack
-    divReorderBeforeSecondInTeamSection.addEventListener('click', () => {
-        let selectedPokemon = selectedPrimaryPokemonArray.slice(1, 2)
         
-        selectedPrimaryPokemonArray.splice(3, 0, selectedPokemon[0])
-        selectedPrimaryPokemonArray.splice(1, 1)
+        // Vid klick på första slotten i reorder-container, flytta den ett hack
+        divReorderBeforeFirstInTeamSection.addEventListener('click', () => {
+            let selectedPokemon = selectedPrimaryPokemonArray.slice(0, 1)
+            
+            selectedPrimaryPokemonArray.splice(2, 0, selectedPokemon[0])
+            selectedPrimaryPokemonArray.splice(0, 1)
+            
+            state.savedFirstChosenPrimary = selectedPrimaryPokemonArray[0]
+            state.savedSecondChosenPrimary = selectedPrimaryPokemonArray[1]
+            state.savedThirdChosenPrimary = selectedPrimaryPokemonArray[2]
+            renderToOrder(selectedPrimaryPokemonArray)
+        })
         
-        state.savedFirstChosenPrimary = selectedPrimaryPokemonArray[0]
-        state.savedSecondChosenPrimary = selectedPrimaryPokemonArray[1]
-        state.savedThirdChosenPrimary = selectedPrimaryPokemonArray[2]
-        renderToOrder(selectedPrimaryPokemonArray)
-    })
-    
-    // Eventlyssnare för TEAM-sektion > Confirm-button
-    confirmButtonReorder.addEventListener('click', () => {
+        // Vid klick på andra slotten i reorder-container, flytta den ett hack
+        divReorderBeforeSecondInTeamSection.addEventListener('click', () => {
+            let selectedPokemon = selectedPrimaryPokemonArray.slice(1, 2)
+            
+            selectedPrimaryPokemonArray.splice(3, 0, selectedPokemon[0])
+            selectedPrimaryPokemonArray.splice(1, 1)
+            
+            state.savedFirstChosenPrimary = selectedPrimaryPokemonArray[0]
+            state.savedSecondChosenPrimary = selectedPrimaryPokemonArray[1]
+            state.savedThirdChosenPrimary = selectedPrimaryPokemonArray[2]
+            renderToOrder(selectedPrimaryPokemonArray)
+        })
         
-        firstPrimaryChosenPicture.src = state.savedFirstChosenPrimary.name.details.sprites.front_default
-
-        // Här uppdateras originalName, så att rätt bild kan renderas i overlay.
-        firstPrimaryChosenName.dataset.originalName = state.savedFirstChosenPrimary.name.name
-        secondPrimaryChosenName.dataset.originalName = state.savedSecondChosenPrimary.name.name
-        thirdPrimaryChosenName.dataset.originalName = state.savedThirdChosenPrimary.name.name
-
-
-        // Om det finns customName, ange det som nya Pokémonnamnet i slots
-        if (selectedPrimaryPokemonArray[0].customName != undefined) {
-            firstPrimaryChosenName.innerText = capitalizeFirstLetter(state.savedFirstChosenPrimary.customName)
-
-            //Om det INTE finns customName, ange det som nya Pokémonnamnet i slots
-        }   else {
-            firstPrimaryChosenName.innerText = capitalizeFirstLetter( state.savedFirstChosenPrimary.name.name )
-        }
+        // Eventlyssnare för TEAM-sektion > Confirm-button
+        confirmButtonReorder.addEventListener('click', () => {
+            
+            firstPrimaryChosenPicture.src = state.savedFirstChosenPrimary.name.details.sprites.front_default
     
-        // Om det finns customName, ange det som nya Pokémonnamnet i slots
-        secondPrimaryChosenPicture.src = state.savedSecondChosenPrimary.name.details.sprites.front_default
-        if (selectedPrimaryPokemonArray[1].customName != undefined) {
-            secondPrimaryChosenName.innerText = capitalizeFirstLetter(state.savedSecondChosenPrimary.customName)
-
-            //Om det INTE finns customName, ange det som nya Pokémonnamnet i slots
-        }   else {
-            secondPrimaryChosenName.innerText = capitalizeFirstLetter( state.savedSecondChosenPrimary.name.name )
-        }
+            // Här uppdateras originalName, så att rätt bild kan renderas i overlay.
+            firstPrimaryChosenName.dataset.originalName = state.savedFirstChosenPrimary.name.name
+            secondPrimaryChosenName.dataset.originalName = state.savedSecondChosenPrimary.name.name
+            thirdPrimaryChosenName.dataset.originalName = state.savedThirdChosenPrimary.name.name
     
-        // Om det finns customName, ange det som nya Pokémonnamnet i slots
-        thirdPrimaryChosenPicture.src = state.savedThirdChosenPrimary.name.details.sprites.front_default
-        if (selectedPrimaryPokemonArray[2].customName != undefined) {
-            thirdPrimaryChosenName.innerText = capitalizeFirstLetter(state.savedThirdChosenPrimary.customName)
-
-            //Om det INTE finns customName, ange det som nya Pokémonnamnet i slots
-        }   else {
-            thirdPrimaryChosenName.innerText = capitalizeFirstLetter( state.savedThirdChosenPrimary.name.name )
-        }
     
-        divReorderTeamSection.style.visibility = 'hidden'
-    })
+            // Om det finns customName, ange det som nya Pokémonnamnet i slots
+            if (selectedPrimaryPokemonArray[0].customName != undefined) {
+                firstPrimaryChosenName.innerText = capitalizeFirstLetter(state.savedFirstChosenPrimary.customName)
+                
+            } else /** Om det INTE finns customName, ange det som nya Pokémonnamnet i slots */
+            { firstPrimaryChosenName.innerText = capitalizeFirstLetter( state.savedFirstChosenPrimary.name.name ) }
+            
+            // Om det finns customName, ange det som nya Pokémonnamnet i slots
+            secondPrimaryChosenPicture.src = state.savedSecondChosenPrimary.name.details.sprites.front_default
+            if (selectedPrimaryPokemonArray[1].customName != undefined) {
+            secondPrimaryChosenName.innerText = capitalizeFirstLetter(state.savedSecondChosenPrimary.customName)} 
+            
+            else /** Om det INTE finns customName, ange det som nya Pokémonnamnet i slots */
+            {secondPrimaryChosenName.innerText = capitalizeFirstLetter( state.savedSecondChosenPrimary.name.name )}
+        
+            // Om det finns customName, ange det som nya Pokémonnamnet i slots
+            thirdPrimaryChosenPicture.src = state.savedThirdChosenPrimary.name.details.sprites.front_default
+            if (selectedPrimaryPokemonArray[2].customName != undefined) {
+                thirdPrimaryChosenName.innerText = capitalizeFirstLetter(state.savedThirdChosenPrimary.customName)}
+    
+            else /** Om det INTE finns customName, ange det som nya Pokémonnamnet i slots */ 
+            {thirdPrimaryChosenName.innerText = capitalizeFirstLetter( state.savedThirdChosenPrimary.name.name )}
+        
+            divReorderTeamSection.style.display = 'none'
+        })
     }
 })
 
 // Kryssknapp för reorder-container
-buttonCloseReorderContainer.addEventListener('click', () => {
-    divReorderTeamSection.style.visibility = 'hidden'
-})
+buttonCloseReorderContainer.addEventListener('click', () => { divReorderTeamSection.style.display = 'none' })

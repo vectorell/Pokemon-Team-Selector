@@ -32,79 +32,79 @@
 
   
   <!-- SECTION PRIMARY TEAM --------------------------------------------------->
-  <section class="section__main display-primary-section" style="display:none;">
-    
-    <div class="container__page-header">
-      <img class="page-header display-primary-section" src="pictures/titles/title-primary-team-28.png" alt="Primary Team">
+    <section class="section__main display-primary-section" style="display:none;">
+        
+        <div class="container__page-header">
+        <img class="page-header display-primary-section" src="pictures/titles/title-primary-team-28.png" alt="Primary Team">
+        </div>
+        
+        <div class="search__container">
+        <p class="paragraph-search-info"> Search for the Pokémons you want to add to your <em><strong> team </strong></em>. </p>
+        <div class="container__input">
+            <input type="text" class="input-pokemon-search">
+            <button type="submit" class="button-search-submit"> Go! </button>
+        </div>
+        </div>
+        
+        <div class="results-info">
+            <p class="search-results"> Search results: </p>
+            <hr class="divider">
+
+        </div>
+
+        <div class="results__container">
+
+        </div>
+
+
+    <!-- FOOTER FÖR PRIMARY-SECTION-------------------------------------->
+    <footer>
+
+
+
+    <div class="container__chosen-count">
+        <p class="count part"> 0 </p>
+        <p class="count" > out of </p>
+        <p class="count"> <span class="sum"> 3 </span> Pokémons chosen. </p>
+    </div>    
+
+    <div class="container__chosen-reserve" style="display: none;">
+        <p>
+            Pokémons in your reserve team (optional):
+        </p>
     </div>
-    
-    <div class="search__container">
-      <p class="paragraph-search-info"> Search for the Pokémons you want to add to your <em><strong> team </strong></em>. </p>
-      <div class="container__input">
-        <input type="text" class="input-pokemon-search">
-        <button type="submit" class="button-search-submit"> Go! </button>
-      </div>
-    </div>
-    
-    <div class="results-info">
-        <p class="search-results"> Search results: </p>
-        <hr class="divider">
 
-    </div>
-
-    <div class="results__container">
-
-    </div>
-
-
-  <!-- FOOTER FÖR PRIMARY-SECTION-------------------------------------->
-  <footer>
-
-
-
-  <div class="container__chosen-count">
-    <p class="count part"> 0 </p>
-    <p class="count" > out of </p>
-    <p class="count"> <span class="sum"> 3 </span> Pokémons chosen. </p>
-  </div>    
-
-  <div class="container__chosen-reserve" style="display: none;">
-    <p>
-        Pokémons in your reserve team (optional):
-    </p>
-  </div>
-
-    <!-- Knapp för att gå till "Reserves"-->
-    <button class="button-bottom-nav button-reserve-team display-primary-section"> 
-    <img class="picture_chosen" src="pictures/buttons/button-to-reserve-team-28px.png" alt="To reserve team">
-    </button>
-    
-    <div class="nav-buttons-container">
-    
-
-        <!-- Knapp för att gå tillbaka till search-->
-        <button class="button-bottom-nav button-search-pokemons" style="display:none"> 
-            <img class="picture_chosen" src="pictures/buttons/button-small-to-search-26px.png" alt="Search Pokémons">
+        <!-- Knapp för att gå till "Reserves"-->
+        <button class="button-bottom-nav button-reserve-team display-primary-section"> 
+        <img class="picture_chosen" src="pictures/buttons/button-to-reserve-team-28px.png" alt="To reserve team">
         </button>
-            
-        <!-- Knapp för att gå till "Your Team"-->
-        <button class="button-bottom-nav button-your-team" style="display:none"> 
-            <img class="picture_chosen" src="pictures/buttons/button-small-your-team-26px.png" alt="To your team">
-        </button>
+        
+        <div class="nav-buttons-container">
+        
 
-    </div>
+            <!-- Knapp för att gå tillbaka till search-->
+            <button class="button-bottom-nav button-search-pokemons" style="display:none"> 
+                <img class="picture_chosen" src="pictures/buttons/button-small-to-search-26px.png" alt="Search Pokémons">
+            </button>
+                
+            <!-- Knapp för att gå till "Your Team"-->
+            <button class="button-bottom-nav button-your-team" style="display:none"> 
+                <img class="picture_chosen" src="pictures/buttons/button-small-your-team-26px.png" alt="To your team">
+            </button>
 
-    </div>
-  </footer>
+        </div>
+
+        </div>
+    </footer>
+    
+    </section>
+
   
-</section>
-
-  
   
 
-<!-- SECTION RESERVE TEAM --------------------------------------------------->
+    <!-- SECTION RESERVE TEAM --------------------------------------------------->
 
-<section class="section__main display-reserves-section" style="display:none;">
+    <section class="section__main display-reserves-section" style="display:none;">
     
     <div class="nav-buttons-container">
         
@@ -120,7 +120,7 @@
         
     </div>
 
-</section>
+    </section>
     
 
 
@@ -141,7 +141,7 @@
         Reorder primary Pokémons
     </button>
 
-    <div class="reorder-div" style="visibility:hidden">
+    <div class="reorder-div" style="display:none">
         
         <button class="button-close-reorder">
             X
@@ -172,56 +172,56 @@
 
         
     </div>
+ <!-- Container för hela "valda Pokémons"-sektionen -->
+ <div class="container__primary-pokemon-slots display-primary-section">
+          
+    <!-- RUBRIK -->
+    <p class="paragraph-chosen-pokemon display-primary-section"> Your <strong><em> primary </em></strong> Pokémons</p>
+    
+    <!-- Valda Primary Pokémon-container -->
+    <div class="container__chosen-primary-pokemons">
+        
+        <!-- Första valda Pokémon -->
+        <div class="chosen-primary-pokemon first-chosen-primary-pokemon chosen-pokemon">
+            <img class="picture-chosen-primary picture-first-chosen-primary chosen-pokemon" src="/pictures/chosen-pokemon--blank-placeholder.png" alt="First chosen Pokémon">
+            <p class="first-chosen-primary-pokemon-name chosen-primary-pokemon-name">  #1: </p>
+        </div>
+        
+        <!-- Andra valda Pokémon -->
+        <div class="chosen-primary-pokemon second-chosen-primary-pokemon chosen-pokemon">
+          <img class="picture-chosen-primary picture-second-chosen-primary chosen-pokemon" src="/pictures/chosen-pokemon--blank-placeholder.png" alt="Second chosen Pokémon">
+          <p class="second-chosen-primary-pokemon-name chosen-primary-pokemon-name"> #2: </p>
+        </div>
+        
+        <!-- Tredje valda Pokémon -->
+        <div class="chosen-primary-pokemon third-chosen-primary-pokemon chosen-pokemon">
+          <img class="picture-chosen-primary picture-third-chosen-primary chosen-pokemon" src="/pictures/chosen-pokemon--blank-placeholder.png" alt="Third chosen Pokémon">
+          <p class="third-chosen-primary-pokemon-name chosen-primary-pokemon-name"> #3: </p>
+        </div>
+        
+    </div>
+    </div>
 
+    <!-- Container för hela RESERVES "valda Pokémons"-sektionen -->
+    <div class="container__reserve-pokemon-slots">
+    
+    <!-- RUBRIK RESERVES -->
+    <p class="paragraph-your-pokemons"> Your chosen <strong><em> reserve </em></strong>  Pokémons.</p>
+
+    <!-- Valda RESERVES Pokémon-container -->
+    <div class="container__chosen-reserve-pokemons">
+  
+        
+    </div>
+    
+    
+    </div>
+    </div>
+    </div>
 
     <!-- FOOTER FÖR TEAM-SECTION ----------------------------------------------------------->
     <footer>
-        <!-- Container för hela "valda Pokémons"-sektionen -->
-        <div class="container__primary-pokemon-slots display-primary-section">
-          
-            <!-- RUBRIK -->
-            <p class="paragraph-chosen-pokemon display-primary-section"> Your <strong><em> primary </em></strong> Pokémons</p>
-            
-            <!-- Valda Primary Pokémon-container -->
-            <div class="container__chosen-primary-pokemons">
-                
-                <!-- Första valda Pokémon -->
-                <div class="chosen-primary-pokemon first-chosen-primary-pokemon chosen-pokemon">
-                    <img class="picture-chosen-primary picture-first-chosen-primary chosen-pokemon" src="/pictures/chosen-pokemon--blank-placeholder.png" alt="First chosen Pokémon">
-                    <p class="first-chosen-primary-pokemon-name chosen-primary-pokemon-name">  #1: </p>
-                </div>
-                
-                <!-- Andra valda Pokémon -->
-                <div class="chosen-primary-pokemon second-chosen-primary-pokemon chosen-pokemon">
-                  <img class="picture-chosen-primary picture-second-chosen-primary chosen-pokemon" src="/pictures/chosen-pokemon--blank-placeholder.png" alt="Second chosen Pokémon">
-                  <p class="second-chosen-primary-pokemon-name chosen-primary-pokemon-name"> #2: </p>
-                </div>
-                
-                <!-- Tredje valda Pokémon -->
-                <div class="chosen-primary-pokemon third-chosen-primary-pokemon chosen-pokemon">
-                  <img class="picture-chosen-primary picture-third-chosen-primary chosen-pokemon" src="/pictures/chosen-pokemon--blank-placeholder.png" alt="Third chosen Pokémon">
-                  <p class="third-chosen-primary-pokemon-name chosen-primary-pokemon-name"> #3: </p>
-                </div>
-                
-            </div>
-        </div>
-    
-        <!-- Container för hela RESERVES "valda Pokémons"-sektionen -->
-        <div class="container__reserve-pokemon-slots">
-            
-            <!-- RUBRIK RESERVES -->
-            <p class="paragraph-your-pokemons"> Your chosen <strong><em> reserve </em></strong>  Pokémons.</p>
-    
-            <!-- Valda RESERVES Pokémon-container -->
-            <div class="container__chosen-reserve-pokemons">
-          
-                
-            </div>
-            
-            
-        </div>
-    </div>
-    </div>
+       
 
 
     <!-- Knapp för att gå till "Reserve Pokémons-->
@@ -242,55 +242,57 @@
 
 
 
-<!--******************* INFORMATIONS-OVERLAY *******************************-->
+    <!--******************* INFORMATIONS-OVERLAY *******************************-->
 
 
-<section class="section__info display-info-section" style="display:none;">
+    <section class="section__info display-info-section" style="display:none;">
 
-  <div class="container__info">
+    <div class="container__info">
 
-    <div class="container__info__pokemon-picture">
+        <div class="container__info__pokemon-picture">
+            <a href="http://www.freepik.com">Designed by starline / Freepik</a>
+        </div>
+        
+        <div class="container__info__pokemon-info">
+        <button class="button-close-overlay">
+            X
+        </button>
+        <h2 class="title-pokemon-name">  </h2>
+        <p class="paragraph-overlay-pokemon-type"> <strong>Type:</strong> </p>
+        <p class="paragraph-overlay-pokemon-base-exp"> <strong>Base Exp:</strong> </p>
+        <p class="paragraph-overlay-pokemon-abilities"> <strong>Abilities:</strong> <br> </p>
+        <p class="paragraph-overlay-credits"> </p>
     </div>
-    
-    <div class="container__info__pokemon-info">
-      <button class="button-close-overlay">
-        X
-      </button>
-      <h2 class="title-pokemon-name">  </h2>
-      <p class="paragraph-overlay-pokemon-type"> <strong>Type:</strong> </p>
-      <p class="paragraph-overlay-pokemon-base-exp"> <strong>Base Exp:</strong> </p>
-      <p class="paragraph-overlay-pokemon-abilities"> <strong>Abilities:</strong> <br> </p>
+        
     </div>
-    
-  </div>
 
-  <div class="overlay-message-div">
-    <p class="overlay-message-paragraph" style="visibility: hidden;">
-      " "
-    </p>
+    <div class="overlay-message-div">
+        <p class="overlay-message-paragraph" style="visibility: hidden;">
+        " "
+        </p>
 
-  </div>
-  <div class="container__buttons">
-    
+    </div>
+    <div class="container__buttons">
+        
 
-    <!-- KNAPP: Lägg till i team -->
-    <button class="button-overlay button-add-to-team" style="display:none;">
-      Add to team!
-    </button>
-    
-    <input class="inputfield-custom-name" type="text" style="display:none;">
+        <!-- KNAPP: Lägg till i team -->
+        <button class="button-overlay button-add-to-team" style="display:none;">
+        Add to team!
+        </button>
+        
+        <input class="inputfield-custom-name" type="text" style="display:none;">
 
-    <!-- KNAPP: Lägg till i team med custom namn -->
-    <button class="button-overlay button-add-to-team-with-custom-name" style="display:none;">
-      Add to team!
-    </button>
-    
-    <!-- KNAPP: Ta bort från team -->
-    <button class="button-overlay button-remove-from-team" style="visibility:hidden;">
-      Remove from team!
-    </button>
-  </div>
-</section>
+        <!-- KNAPP: Lägg till i team med custom namn -->
+        <button class="button-overlay button-add-to-team-with-custom-name" style="display:none;">
+        Add to team!
+        </button>
+        
+        <!-- KNAPP: Ta bort från team -->
+        <button class="button-overlay button-remove-from-team" style="visibility:hidden;">
+        Remove from team!
+        </button>
+    </div>
+    </section>
 
 
 </body>

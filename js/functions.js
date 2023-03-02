@@ -9,8 +9,7 @@ async function loadPokemons () {
     
     let isLocalStorageEmpty = (localStorage.getItem(LS_KEY) == null)
 
-    // Om LS är tomt, hämta in alla pokemons från API, 
-    // spara till LS och definera 'pokemonArray'
+    // Om LS är tomt, hämta in alla pokemons från API, spara till LS och definera 'pokemonArray'
     if ( isLocalStorageEmpty ) {
 
         let response = await fetch(getAllPokemonsUrl, options)
@@ -20,17 +19,12 @@ async function loadPokemons () {
         let stringToSave = JSON.stringify(pokemonArray)
         localStorage.setItem(LS_KEY, stringToSave)
 
-    // Annars om LS inte är tomt, hämta alla pokemons från LS,
-    // definera pokemonArray
-    } else {
-
+    } else {    /** Annars om LS inte är tomt, hämta alla pokemons från LS, definera pokemonArray */
         let stringFromLocalStorage = localStorage.getItem(LS_KEY)
         let arrayFromLocalStorage = JSON.parse(stringFromLocalStorage)
         pokemonArray = arrayFromLocalStorage
     }
 }   
-
-
 
 
 // Funktion för att hämta detaljerad info om en enskild Pokémon.
@@ -50,9 +44,6 @@ async function getPokemonDetails(pokemon) {
 }
 
 
-
-
-
 async function searchPokemon(searchInput) {
 /**Funktion för att söka efter Pokémons, och returnera resultatet (foundPokemonsArray).
  * Denna funktion filtrerar bort olika icke-originala Pokémon-varianter, samt fetchar fram detaljer från APIet
@@ -62,9 +53,7 @@ async function searchPokemon(searchInput) {
     // Funktion för att filtrera bort icke-originala Pokémon-varianter,
     // samt att returnera alla Pokémon-namn som innehåller det som finns i sökfältet.
     function comparePokemonNames(pokemon) {
-        if ((pokemon.name.includes('-')) == false) {
-            return pokemon.name.includes(searchInput.toLowerCase())
-        }
+        if ((pokemon.name.includes('-')) == false) { return pokemon.name.includes(searchInput.toLowerCase())}
     }
     
     // Exekverar ovanstående funktion och sparar resultatet i 'foundPokemonsArray'
@@ -76,22 +65,20 @@ async function searchPokemon(searchInput) {
     // För varje funnen Pokémon: om denna Pokémon INTE har hämtade detaljer, hämta dem från APIet
     // och tilldela detaljerna till Pokémon-objektet.
     for (const foundPokemon of foundPokemonsArray) {
-        if (foundPokemon.details == null) {
+        if ( foundPokemon.details == null ) {
 
             const pokemonDetails = await getPokemonDetails(foundPokemon)
             foundPokemon.details = pokemonDetails
             console.log(foundPokemon)
     
             let indexedPokemon =  getPokemonByName(foundPokemon.name)  
-            
             indexedPokemon.details = pokemonDetails
             pokemonListHasChanges = true;
         }
     }
 
     // Om det har skett en förändring av Pokémon-objektet, uppdatera localStorage
-    if(pokemonListHasChanges)
-    {
+    if( pokemonListHasChanges ) {
       let stringToSave = JSON.stringify(pokemonArray)
       localStorage.setItem(LS_KEY, stringToSave)
     }
@@ -100,13 +87,9 @@ async function searchPokemon(searchInput) {
 }
 
 
-
 // Funktion för att finna en Pokémon i lokal array genom att ange dens namn.
 // Används i eventlyssnare för att smidigare hämta rätt Pokémon.
-function getPokemonByName(pokemonName) {
-    return pokemonArray.find(indexedPokemon => indexedPokemon.name == pokemonName)
-}
-
+function getPokemonByName(pokemonName) { return pokemonArray.find(indexedPokemon => indexedPokemon.name == pokemonName) }
 
    
 // FUNKTION
@@ -144,10 +127,7 @@ function renderPokemonDetails(pokemonDetails) {
 
 
 // Funktion för att göra stor bokstav på angiven sträng.
-function capitalizeFirstLetter(string) {
-    return string[0].toUpperCase() + string.slice(1);
-}
-
+function capitalizeFirstLetter(string) { return string[0].toUpperCase() + string.slice(1) }
 
 
 function closeOverlayAndHideButtons() {
@@ -173,9 +153,7 @@ function renderToOverlay(pokemonDetails) {
 
     if (pokemonDetails.customName) {
         overlayTitlePokemonName.innerText = capitalizeFirstLetter(pokemonDetails.customName) 
-    } else {
-        overlayTitlePokemonName.innerText = capitalizeFirstLetter(pokemonDetails.name) 
-    }
+    } else { overlayTitlePokemonName.innerText = capitalizeFirstLetter(pokemonDetails.name) }
 
     // Mha denna funktion hämtas och returneras samtliga 'types'
     let fetchedTypes = []
@@ -202,6 +180,7 @@ function renderToOverlay(pokemonDetails) {
     overlayImagePokemon.className = pokemonDetails.name
     overlayImagePokemon.src = pokemonDetails.sprites.front_default
     overlayImagePokemon.alt = pokemonDetails.name
+    overlayContainerImagePokemon.innerHTML = '<a href="http://www.freepik.com">Designed by starline / Freepik</a>'
     overlayContainerImagePokemon.prepend(overlayImagePokemon)
 }
 
@@ -239,17 +218,10 @@ function removeTargetPokemon(targetPokemon) {
           chosenCountPart.innerText = slotsCount
         }
         
-        else {
-            // Om en reserve-pokémon tas bort
-            targetPokemon.parentElement.remove()
-            
-        }
+        else /** Om en reserve-pokémon tas bort */ { targetPokemon.parentElement.remove() }
 }
 
-
 function navigateTo(section) {
-
-    // state.currentView = section
 
     if (section == 'primary') {
         sectionPrimary.style.display = 'flex'
@@ -267,7 +239,6 @@ function navigateTo(section) {
         chosenCountContainer.style.display = 'flex'
         chosenReserveContainerText.style.display = 'none'
 
-        
         navButtonYourTeam.style.display = 'none'
         navButtonReserveTeam.style.display = 'flex'
         navButtonBackToSearch.style.display = 'none'
@@ -277,7 +248,6 @@ function navigateTo(section) {
     }   
 
     else if (section == 'reserves') {
-        
         sectionPrimary.style.display = 'flex'
         sectionReserves.style.display = 'none'
         sectionYourTeam.style.display = 'none'
@@ -290,9 +260,6 @@ function navigateTo(section) {
         chosenCountContainer.style.display = 'none'
         chosenReserveContainerText.style.display = 'flex'
 
-        // let chosenReserveParagraph = document.createElement('p')
-        // chosenReserveParagraph.innerText = 'Pokémons in your reserve team (optional):'
-        // chosenCountContainer.append(chosenReserveParagraph)
         resultsContainer.innerHTML = ''
         searchInputfield.value = ''
         navButtonReserveTeam.style.display = 'none'
@@ -316,7 +283,6 @@ function navigateTo(section) {
     else if (section == 'overlay') {
         overlaySection.style.display = 'flex'
         overlayMessage.style.visibility = 'hidden'
-
         state.currentView = 'overlay'
     }   
 }
@@ -335,8 +301,5 @@ function areAllSlotsAssigned() {
       state.currentView = 'reserves'
       return true
     } 
-    else {
-    //   state.currentView = 'primary'
-      return false
-    }
+    else { return false }
   }

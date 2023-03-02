@@ -42,6 +42,18 @@ p {
   font-size: 1.3em;
 }
 
+a {
+    text-decoration: none;
+    color:white;
+}
+
+
+a:visited {
+    text-decoration: none;
+    color:white;
+}
+
+
 .paragraph-primary-pokemons {
   font-size: 2em;
   font-weight: 600;
@@ -64,7 +76,7 @@ p {
   flex-direction: column;
   align-items: center;
   /* height: 80vh; */
-  height: fit-content;
+  /* height: fit-content; */
   padding-bottom: 2em;
   /* box-shadow: var(--shadow); */
 
@@ -252,7 +264,8 @@ p {
     width: 50em;
     background-color: rgba(255, 255, 255, 0.751);
     border-radius: 1em;
-    min-height: 80vh;
+    /* min-height: 80vh; */
+    justify-content: space-between;
   }
 
   .container__chosen__pokemons {
@@ -272,7 +285,7 @@ p {
 
   .container__reserve-pokemon-slots {
     width: 50em;
-    border-radius: 0em 0em 1em 1em;
+    /* border-radius: 0em 0em 1em 1em; */
 }
 
 }
